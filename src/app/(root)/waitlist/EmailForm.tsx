@@ -70,7 +70,7 @@ export default function EmailForm() {
           placeholder='your@email.com'
           required
         />
-        <WaitlistSubmitButton>Submit</WaitlistSubmitButton>
+        <WaitlistSubmitButton>Sign up</WaitlistSubmitButton>
       </motion.form>
       {error && (
         <motion.small
