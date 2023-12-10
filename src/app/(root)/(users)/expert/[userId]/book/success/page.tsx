@@ -16,6 +16,9 @@ export default function BookingSuccess() {
           <p className='text-gray-500'>
             We&apos;ve sent you an email with the details of your booking.
           </p>
+          <p className='text-gray-500'>
+            You can also find the details of your booking below.
+          </p>
         </div>
       </div>
     </main>
