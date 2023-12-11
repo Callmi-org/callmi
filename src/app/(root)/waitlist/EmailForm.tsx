@@ -3,7 +3,6 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { subscribe } from './action'
-import { SubmitButton } from '@/components/Form/SubmitButton'
 import { logoVariants, formVariants, getFadeInProps } from '@/utils/framer'
 import { WaitlistSubmitButton } from './WaitlistSubmitButton'
 
