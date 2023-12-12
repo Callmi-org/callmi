@@ -2,6 +2,30 @@ import ClientNavbar from '@/components/layout/client-navbar'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import LandingButton from '@/components/landing/landing-button'
+
+const imageData = [
+  {
+    src: '/landing/companies/pluto.png',
+    alt: 'pluto',
+  },
+  {
+    src: '/landing/companies/talabat.png',
+    alt: 'talabat',
+  },
+  {
+    src: '/landing/companies/careem.png',
+    alt: 'careem',
+  },
+  {
+    src: '/landing/companies/eyewa.png',
+    alt: 'eyewa',
+  },
+  {
+    src: '/landing/companies/justlife.png',
+    alt: 'justlife',
+  },
+]
 
 export default function Hero() {
   return (
@@ -22,51 +46,22 @@ export default function Hero() {
           Connect with those who seek your knowledge and get paid for your
           expertise.
         </p>
-        <Link href='/waitlist'>
-          <Button className='bg-brand font-normal text-white'>
-            Get Started For Free
-          </Button>
-        </Link>
+        <LandingButton>Get Started For Free</LandingButton>
         <div className='flex w-full flex-col items-center justify-center gap-4'>
           <p className='font-normal tracking-wide text-black'>
             Trusted by leaders from
           </p>
           <div className='grid w-full max-w-3xl grid-cols-5 items-center justify-center gap-8 px-8 '>
-            <Image
-              src='/landing/companies/pluto.png'
-              alt='pluto'
-              width={100}
-              height={100}
-              className='object-contain'
-            />
-            <Image
-              src='/landing/companies/talabat.png'
-              alt='talabat'
-              width={100}
-              height={100}
-              className=' object-contain'
-            />
-            <Image
-              src='/landing/companies/careem.png'
-              alt='careem'
-              width={100}
-              height={100}
-              className=' object-contain'
-            />
-            <Image
-              src='/landing/companies/eyewa.png'
-              alt='eyewa'
-              width={100}
-              height={100}
-              className=' object-contain'
-            />
-            <Image
-              src='/landing/companies/justlife.png'
-              alt='justlife'
-              width={100}
-              height={100}
-              className=' object-contain'
-            />
+            {imageData.map(({ src, alt }) => (
+              <Image
+                key={alt}
+                src={src}
+                alt={alt}
+                width={100}
+                height={100}
+                className='object-contain'
+              />
+            ))}
           </div>
         </div>
         <Image

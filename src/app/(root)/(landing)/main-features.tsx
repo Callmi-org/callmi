@@ -2,13 +2,13 @@ import Image from 'next/image'
 import HighlightSpan from '@/components/landing/highlight-span'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-export default function Features() {
+export default function MainFeatures() {
   return (
     <section
       id='features'
-      className='flex min-h-screen w-full max-w-9xl flex-col items-center gap-16 px-4 py-16 pb-40'
+      className='flex min-h-screen w-full max-w-9xl flex-col items-center gap-16 px-4 pb-8 pt-12'
     >
-      <h1 className='max-w-xl text-center leading-tight '>
+      <h1 className='max-w-xs text-center text-3xl leading-tight md:max-w-xl md:text-5xl'>
         Join MENA&apos;s biggest commuity of{' '}
         <HighlightSpan>experts</HighlightSpan>
       </h1>
@@ -30,10 +30,10 @@ export default function Features() {
           people
         </FeatureTitle>
         <FeatureDescription>
-          Sign up in less than 3 minutes. Price your sessions as you see fit and
-          help professionals avoid “expensive learnings” you&apos;ve made
-          earlier in your career. Flexibly add sessions to your calendar, free
-          from any minimum session obligations.
+          Callmi simplifies your professional life by syncing with your Google
+          Calendar for hassle-free scheduling of 30-minute or 1-hour
+          consultations. If you’re feeling charitable, you can inform your
+          clients that you're supporting a cause with each session.
         </FeatureDescription>
       </Feature>
 
@@ -82,9 +82,13 @@ function Feature({ children, image, flipOrder = false }: FeatureProps) {
 }
 
 function FeatureTitle({ children }: { children: React.ReactNode }) {
-  return <h1 className='text-4xl md:text-5xl'>{children}</h1>
+  return <h1 className='max-w-xl text-2xl md:text-5xl'>{children}</h1>
 }
 
 function FeatureDescription({ children }: { children: React.ReactNode }) {
-  return <p>{children}</p>
+  return (
+    <p className='max-w-2xl text-base font-light md:text-[1.08rem]'>
+      {children}
+    </p>
+  )
 }
