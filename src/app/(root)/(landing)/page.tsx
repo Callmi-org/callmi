@@ -5,6 +5,7 @@ import Hero from './hero'
 import React from 'react'
 import SecondaryFeatures from './secondary-features'
 import FAQ from './faq'
+import Pricing from './pricing'
 
 export default function LandingPage() {
   // redirect('/waitlist')
@@ -16,6 +17,7 @@ export default function LandingPage() {
       <PrimaryFeatures />
       <SecondaryFeatures />
       <FAQ />
+      <Pricing />
     </main>
   )
 }

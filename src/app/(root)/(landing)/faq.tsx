@@ -8,7 +8,10 @@ import { faqData } from '@/data/landing'
 
 export default function FAQ() {
   return (
-    <section className='mx-auto w-full max-w-9xl px-4 pb-16 pt-8'>
+    <section
+      id='faq'
+      className='mx-auto w-full max-w-9xl px-4 pb-16 pt-8'
+    >
       <h1 className='whitespace-nowrap text-center text-3xl md:text-5xl'>
         Frequently Asked Questions
       </h1>

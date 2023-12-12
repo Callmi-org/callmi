@@ -1,9 +1,9 @@
 import { Menu } from 'lucide-react'
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
-import NavLogo from './nav-logo'
+import NavLogo from '../nav-logo'
 import options from '@/app/api/auth/[...nextauth]/options'
-import Avatar from '../general/avatar'
+import Avatar from '../../general/avatar'
 export default async function Navbar() {
   const session = await getServerSession(options)
   return (

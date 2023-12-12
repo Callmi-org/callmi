@@ -4,57 +4,29 @@ import Link from 'next/link'
 import NavLogo from './nav-logo'
 import Avatar from '@/components/general/avatar'
 import { useSession } from 'next-auth/react'
+import NavLink from './navigation/navlink'
+import LandingButton from '../landing/landing-button'
 export default function ClientNavbar() {
   const { data: session } = useSession()
   return (
     <nav className=' top-0 z-50 w-screen  backdrop-blur-sm'>
-      <div className='mx-auto flex w-full max-w-9xl items-center justify-between px-4'>
-        <div>
+      <div className='mx-auto flex w-full max-w-9xl items-center justify-between p-4'>
+        <div id='left'>
           <NavLogo />
         </div>
-        <ul
-          id='desktop-menu'
-          className='hidden gap-4'
-        >
-          {!session && (
-            <>
-              <li>
-                <Link
-                  href='/api/auth/signin'
-                  className='btn col-span-1 w-full bg-white text-black'
-                >
-                  Sign in
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/api/auth/signin'
-                  className='btn col-span-1 w-full'
-                >
-                  Sign up for free
-                </Link>
-              </li>
-            </>
-          )}
-          {session && (
-            <li>
-              <Link href={`/u/${session?.user?.id}`}>
-                <Avatar
-                  size='sm'
-                  src={session.user?.image}
-                  name={session.user?.name}
-                />
-              </Link>
-            </li>
-          )}
-        </ul>
         <div
-          id='mobile-menu'
-          className='hidden'
+          className='hidden md:block'
+          id='center'
         >
-          <div className=''>
-            <Menu className='h-7 w-7 text-black' />
-          </div>
+          <ul className='grid grid-cols-3 gap-16'>
+            <NavLink href='#features'>Features</NavLink>
+            <NavLink href='#pricing'>Pricing</NavLink>
+            <NavLink href='#faq'>FAQs</NavLink>
+          </ul>
+        </div>
+
+        <div id='right'>
+          <LandingButton className='bg-gray-700'>Get Started</LandingButton>
         </div>
       </div>
     </nav>
