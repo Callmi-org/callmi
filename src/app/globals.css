@@ -100,7 +100,7 @@ h1 {
 }
 
 p {
-  @apply text-lg leading-relaxed tracking-tight md:text-xl md:leading-relaxed;
+  @apply leading-relaxed tracking-tight text-gray-600 md:leading-relaxed;
 }
 
 @layer components {

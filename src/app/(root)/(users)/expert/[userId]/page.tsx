@@ -1,5 +1,5 @@
 'use client'
-import BookingSidebar from '@/components/UserPage/BookingSidebar'
+import BookingSidebar from '@/components/expert/booking-sidebar'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
 import { useState } from 'react'

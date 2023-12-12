@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import ImageRight from './ImageRight'
+import ImageRight from './image-right'
 import { cn } from '@/utils/utils'
 
 type Props = {
@@ -38,7 +38,7 @@ export default function OnboardingSkeleton({
           <h1 className='text-3xl md:text-4xl'>Callmi</h1>
           <div
             className={cn(
-              'bg-brand absolute bottom-0 left-0 h-1 rounded-r',
+              'absolute bottom-0 left-0 h-1 rounded-r bg-brand',
               stepWidthClasses[step]
             )}
           ></div>

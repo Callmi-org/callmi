@@ -1,10 +1,10 @@
 import { formatCurrency } from '@/utils/utils'
 import { Calendar } from '../ui/calendar'
-import InputWithLabel from '../Form/InputWithLabel'
-import SelectWithLabel from '../Form/SelectWithLabel'
+import InputWithLabel from '../form/input-with-label'
+import SelectWithLabel from '../form/select-with-label'
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
-import BookingForm from './BookingForm'
+import BookingForm from './booking-form'
 
 type Props = {
   profile: User

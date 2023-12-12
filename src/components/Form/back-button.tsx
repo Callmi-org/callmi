@@ -1,4 +1,4 @@
-import { Wrapper } from './WrapIfHref'
+import { Wrapper } from './wrap-if-href'
 type Props = React.ComponentPropsWithoutRef<'button'> & {
   href?: string
 }

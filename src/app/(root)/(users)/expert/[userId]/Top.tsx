@@ -1,5 +1,5 @@
 'use client'
-import Avatar from '@/components/General/Avatar'
+import Avatar from '@/components/general/avatar'
 import { Button } from '@/components/ui/button'
 import {
   MapPin,

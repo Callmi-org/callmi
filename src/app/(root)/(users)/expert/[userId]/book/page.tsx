@@ -1,6 +1,6 @@
 'use client'
 
-import BookingForm from '@/components/UserPage/BookingForm'
+import BookingForm from '@/components/expert/booking-form'
 import { profile } from '@/data/general'
 import { useState } from 'react'
 

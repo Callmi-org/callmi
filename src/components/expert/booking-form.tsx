@@ -2,8 +2,8 @@
 import { formatCurrency } from '@/utils/utils'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import InputWithLabel from '../Form/InputWithLabel'
-import SelectWithLabel from '../Form/SelectWithLabel'
+import InputWithLabel from '../form/input-with-label'
+import SelectWithLabel from '../form/select-with-label'
 import { Calendar } from '../ui/calendar'
 import Link from 'next/link'
 

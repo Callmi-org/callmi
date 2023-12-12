@@ -8,8 +8,8 @@ export default function NavLogo() {
   return (
     <Link
       href='/'
-      id='nav-left'
-      className='flex items-center'>
+      className='flex items-center'
+    >
       <motion.div whileHover={{ rotate: 180, scale: 1.1 }}>
         <Image
           src='/svg/logo.svg'

@@ -1,12 +1,12 @@
 import options from '@/app/api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
-import Input from '@/components/Form/InputWithLabel'
+import Input from '@/components/form/input-with-label'
 import { redirect } from 'next/navigation'
-import { SubmitButton } from '@/components/Form/SubmitButton'
+import { SubmitButton } from '@/components/form/submit-button'
 import { timeZones } from '@/data/general'
-import Select from '@/components/Form/SelectWithLabel'
+import Select from '@/components/form/select-with-label'
 import formAction from './action'
-import OnboardingSkeleton from '../../OnboardingSkeleton'
+import OnboardingSkeleton from '../../onboarding-skeleton'
 
 export default async function OnboardingStep1() {
   const session = await getServerSession(options)

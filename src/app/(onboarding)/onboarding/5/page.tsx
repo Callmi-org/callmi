@@ -1,9 +1,9 @@
 // 'use client'
 
-import BackButton from '@/components/Form/BackButton'
-import OnboardingSkeleton from '../../OnboardingSkeleton'
-import { SubmitButton } from '@/components/Form/SubmitButton'
-import InputWithLabel from '@/components/Form/InputWithLabel'
+import BackButton from '@/components/form/back-button'
+import OnboardingSkeleton from '../../onboarding-skeleton'
+import { SubmitButton } from '@/components/form/submit-button'
+import InputWithLabel from '@/components/form/input-with-label'
 import formAction from './action'
 import { getServerSession } from 'next-auth'
 import options from '@/app/api/auth/[...nextauth]/options'

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { DM_Sans } from 'next/font/google'
 import '../globals.css'
-import Navbar from '@/components/Layout/Navbar'
-import Footer from '@/components/Layout/Footer'
-import Providers from '../Providers'
+import Navbar from '@/components/layout/navbar'
+import Footer from '@/components/layout/footer'
+import Providers from '../providers'
 const dmSans = DM_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -27,7 +27,6 @@ export default function RootLayout({
         <body
           className={` flex min-h-screen flex-col text-black  ${dmSans.className}`}
         >
-          <Navbar />
           {children}
           {/* <Footer /> */}
         </body>

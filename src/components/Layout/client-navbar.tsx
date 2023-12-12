@@ -1,14 +1,14 @@
+'use client'
 import { Menu } from 'lucide-react'
-import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 import NavLogo from './nav-logo'
-import options from '@/app/api/auth/[...nextauth]/options'
-import Avatar from '../general/avatar'
-export default async function Navbar() {
-  const session = await getServerSession(options)
+import Avatar from '@/components/general/avatar'
+import { useSession } from 'next-auth/react'
+export default function ClientNavbar() {
+  const { data: session } = useSession()
   return (
-    <nav className='fixed top-0 z-50 w-screen bg-white/80 shadow  backdrop-blur-md'>
-      <div className='mx-auto flex w-full items-center justify-between px-4'>
+    <nav className=' top-0 z-50 w-screen  backdrop-blur-sm'>
+      <div className='mx-auto flex w-full max-w-9xl items-center justify-between px-4'>
         <div>
           <NavLogo />
         </div>
