@@ -1,37 +1,13 @@
 import ClientNavbar from '@/components/layout/client-navbar'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import LandingButton from '@/components/landing/landing-button'
-
-const imageData = [
-  {
-    src: '/landing/companies/pluto.png',
-    alt: 'pluto',
-  },
-  {
-    src: '/landing/companies/talabat.png',
-    alt: 'talabat',
-  },
-  {
-    src: '/landing/companies/careem.png',
-    alt: 'careem',
-  },
-  {
-    src: '/landing/companies/eyewa.png',
-    alt: 'eyewa',
-  },
-  {
-    src: '/landing/companies/justlife.png',
-    alt: 'justlife',
-  },
-]
+import { companyIconsData } from '@/data/landing'
 
 export default function Hero() {
   return (
     <section
       id='hero'
-      className='min-h-screen bg-lime-50 text-center'
+      className='min-h-screen bg-lime-50 pb-16 text-center md:pb-24'
       style={{
         backgroundImage: `url('/landing/overlay-light.jpg')`,
         backgroundSize: 'cover',
@@ -51,8 +27,8 @@ export default function Hero() {
           <p className='font-normal tracking-wide text-black'>
             Trusted by leaders from
           </p>
-          <div className='grid w-full max-w-3xl grid-cols-5 items-center justify-center gap-8 px-8 '>
-            {imageData.map(({ src, alt }) => (
+          <div className='grid w-full max-w-3xl grid-cols-5 items-center justify-center gap-4 px-4 '>
+            {companyIconsData.map(({ src, alt }) => (
               <Image
                 key={alt}
                 src={src}
@@ -69,6 +45,7 @@ export default function Hero() {
           alt='booking'
           width={1920}
           height={1080}
+          className='w-full max-w-9xl object-contain'
         />
       </div>
     </section>

@@ -9,8 +9,10 @@ export default function SecondaryFeatures() {
   return (
     <section className='w-full bg-[#080808] px-4 py-10 md:bg-white'>
       <div className='mx-auto w-full max-w-9xl rounded-[3.5rem] bg-[#080808] md:p-16'>
-        <h1 className='text-center text-3xl text-white'>You also get</h1>
-        <div className='mt-8 grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4'>
+        <h1 className='text-center text-3xl text-white md:text-5xl'>
+          You also get
+        </h1>
+        <div className='mt-8 grid w-full grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 lg:grid-cols-4'>
           <Card
             icon={<CreditCard {...iconProps} />}
             title='Integrated Payments'

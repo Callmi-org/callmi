@@ -8,7 +8,12 @@ export default function MainFeatures() {
       id='features'
       className='flex min-h-screen w-full max-w-9xl flex-col items-center gap-16 px-4 pb-8 pt-12'
     >
-      <h1 className='max-w-xs text-center text-3xl leading-tight md:max-w-xl md:text-5xl'>
+      <h1
+        className='max-w-xl text-center text-3xl leading-tight md:text-[3rem]'
+        style={{
+          textWrap: 'balance',
+        }}
+      >
         Join MENA&apos;s biggest commuity of{' '}
         <HighlightSpan>experts</HighlightSpan>
       </h1>
@@ -32,16 +37,16 @@ export default function MainFeatures() {
         <FeatureDescription>
           Callmi simplifies your professional life by syncing with your Google
           Calendar for hassle-free scheduling of 30-minute or 1-hour
-          consultations. If you’re feeling charitable, you can inform your
-          clients that you're supporting a cause with each session.
+          consultations. If you&apos;re feeling charitable, you can inform your
+          clients that you&apos;re supporting a cause with each session.
         </FeatureDescription>
       </Feature>
 
       <Feature image='/landing/features/3.png'>
         <FeatureTitle>Dedicated dashboard to manage your workflow</FeatureTitle>
         <FeatureDescription>
-          As soon as you're booked, appointments are automatically synced to
-          your calendar, with Google Meet video calls. Got busy? Change your
+          As soon as you&apos;re booked, appointments are automatically synced
+          to your calendar, with Google Meet video calls. Got busy? Change your
           availability. Want to update your pricing? You can do that in a coupe
           of clicks. Feel like withdrawing your earnings? We&apos;re here to
           help.
@@ -51,7 +56,7 @@ export default function MainFeatures() {
           className='mx-auto md:mx-0'
         >
           <Button className='w-min bg-brand px-8 font-normal text-white'>
-            Get Started
+            Get Started For Free
           </Button>
         </Link>
       </Feature>

@@ -1,15 +1,13 @@
 'use client'
 import { categoryData, faqData } from '@/data/landing'
-import FaqItem from '@/components/landing/faq'
 import PrimaryFeatures from './main-features'
 import Hero from './hero'
 import React from 'react'
-import { CreditCard, Globe2, Clock, CalendarRange } from 'lucide-react'
 import SecondaryFeatures from './secondary-features'
+import FAQ from './faq'
 
 export default function LandingPage() {
   // redirect('/waitlist')
-  // const { categories } = useShuffleCategories(categoryData)
   const categories = categoryData
 
   return (
@@ -17,7 +15,7 @@ export default function LandingPage() {
       <Hero />
       <PrimaryFeatures />
       <SecondaryFeatures />
-      <section></section>
+      <FAQ />
     </main>
   )
 }

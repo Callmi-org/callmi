@@ -1,3 +1,26 @@
+export const companyIconsData = [
+  {
+    src: '/landing/companies/pluto.png',
+    alt: 'pluto',
+  },
+  {
+    src: '/landing/companies/talabat.png',
+    alt: 'talabat',
+  },
+  {
+    src: '/landing/companies/careem.png',
+    alt: 'careem',
+  },
+  {
+    src: '/landing/companies/eyewa.png',
+    alt: 'eyewa',
+  },
+  {
+    src: '/landing/companies/justlife.png',
+    alt: 'justlife',
+  },
+]
+
 export const categoryData = [
   'DevOps',
   'UX Design',
