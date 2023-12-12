@@ -22,6 +22,7 @@ export default function FAQ() {
       >
         {faqData.map(({ question, answer }) => (
           <FAQItem
+            key={question}
             question={question}
             answer={answer}
           />
