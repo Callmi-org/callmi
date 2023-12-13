@@ -6,7 +6,7 @@ export default function MainFeatures() {
   return (
     <section
       id='features'
-      className='mx-auto flex w-full max-w-9xl flex-col items-center gap-16 pb-8 pt-12'
+      className='mx-auto flex w-full max-w-9xl flex-col items-center gap-16 px-4 pb-8 pt-12'
     >
       <h1
         className='max-w-xl text-center text-3xl leading-tight md:text-[3rem]'
@@ -35,10 +35,10 @@ export default function MainFeatures() {
           people
         </FeatureTitle>
         <FeatureDescription>
-          Callmi simplifies your professional life by syncing with your Google
-          Calendar for hassle-free scheduling of 30-minute or 1-hour
-          consultations. If you&apos;re feeling charitable, you can inform your
-          clients that you&apos;re supporting a cause with each session.
+          Callmi&apos;s expert booking tool syncs with your Google Calendar for
+          hassle-free scheduling. If you&apos;re feeling charitable, you can
+          inform your clients that you&apos;re supporting a cause with each
+          session.
         </FeatureDescription>
       </Feature>
 
@@ -47,7 +47,7 @@ export default function MainFeatures() {
         <FeatureDescription>
           As soon as you&apos;re booked, appointments are automatically synced
           to your calendar, with Google Meet video calls. Got busy? Change your
-          availability. Want to update your pricing? You can do that in a coupe
+          availability. Want to update your pricing? You can do that in a couple
           of clicks. Feel like withdrawing your earnings? We&apos;re here to
           help.
         </FeatureDescription>
@@ -56,7 +56,7 @@ export default function MainFeatures() {
           className='mx-auto md:mx-0'
         >
           <Button className='w-min bg-brand px-8 font-normal text-white'>
-            Get Started For Free
+            Join as an Expert
           </Button>
         </Link>
       </Feature>
@@ -74,12 +74,14 @@ function Feature({ children, image, flipOrder = false }: FeatureProps) {
   return (
     <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
       <div className={flipOrder ? 'md:order-last' : ''}>
-        <Image
-          src={image}
-          alt='feature'
-          width={750}
-          height={550}
-        />
+        <div className='flex h-full w-full items-center'>
+          <Image
+            src={image}
+            alt='feature'
+            width={750}
+            height={550}
+          />
+        </div>
       </div>
       <div className='flex flex-col justify-center gap-8'>{children}</div>
     </div>

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 export default function BookingSuccess() {
   return (
-    <main className='min-h-screen px-4 pb-20 pt-28 md:px-12 2xl:pb-4'>
+    <main className='min-h-screen px-4 py-8 md:px-12 2xl:pb-4'>
       <div className='mx-auto max-w-md rounded-3xl p-6 md:bg-gray-100'>
         <div className='flex flex-col items-center gap-8'>
           <div className='flex items-center gap-2 whitespace-nowrap rounded-2xl border border-red-700 bg-red-100 px-4 py-3 text-sm text-red-900'>

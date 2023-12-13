@@ -5,7 +5,7 @@ import { Linkedin, LucideIcon, Mail } from 'lucide-react'
 import Link from 'next/link'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/utils/utils'
-import NavLink from '@/components/layout/navigation/navlink'
+import { FooterNavLink } from '@/components/layout/navlink'
 
 export default function Pricing() {
   return (
@@ -29,7 +29,7 @@ export default function Pricing() {
           clients a 20% fee on top your fee per call.
         </p>
         <LandingButton className='bg-[#080808]'>
-          Get Started For Free
+          Join as an Expert
         </LandingButton>
         <div className='relative'>
           <Image
@@ -51,7 +51,7 @@ export default function Pricing() {
 function Footer() {
   return (
     <div className='z-20 -mt-[30%] w-full bg-transparent py-10 md:-mt-52'>
-      <div className='mx-auto flex w-full max-w-9xl flex-col gap-16 rounded-[3.5rem] bg-[#080808] p-10 md:p-16'>
+      <div className='mx-auto flex w-full max-w-9xl flex-col gap-16 rounded-3xl bg-[#080808] p-10 md:rounded-[3.5rem] md:p-16'>
         <div className='just flex flex-wrap gap-8 md:justify-between'>
           <div className='flex flex-col gap-6'>
             <NavLogo />
@@ -76,17 +76,17 @@ function Footer() {
               />
             </div>
           </div>
-          <div className='max-w-xxs flex w-full justify-between gap-8 text-xs'>
+          <div className='flex w-full max-w-xxs justify-between gap-8 text-xs'>
             <ul className='flex flex-col gap-2 text-left'>
               <span className='text-gray-600'>Product</span>
-              <NavLink href='#features'>Features</NavLink>
-              <NavLink href='#pricing'>Pricing</NavLink>
-              <NavLink href='#faq'>FAQs</NavLink>
+              <FooterNavLink href='#features'>Features</FooterNavLink>
+              <FooterNavLink href='#pricing'>Pricing</FooterNavLink>
+              <FooterNavLink href='#faq'>FAQs</FooterNavLink>
             </ul>
             <ul className='flex flex-col gap-2 text-left'>
               <span className='text-gray-600'>Pages</span>
-              <NavLink href='/terms'>Terms & Conditions</NavLink>
-              <NavLink href='/privacy'>Privacy Policy</NavLink>
+              <FooterNavLink href='/terms'>Terms & Conditions</FooterNavLink>
+              <FooterNavLink href='/privacy'>Privacy Policy</FooterNavLink>
             </ul>
           </div>
         </div>

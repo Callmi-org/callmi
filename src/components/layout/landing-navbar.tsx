@@ -4,9 +4,11 @@ import Link from 'next/link'
 import NavLogo from './nav-logo'
 import Avatar from '@/components/general/avatar'
 import { useSession } from 'next-auth/react'
-import NavLink from './navigation/navlink'
+import { NavLink } from './navlink'
 import LandingButton from '../landing/landing-button'
-export default function ClientNavbar() {
+import { motion } from 'framer-motion'
+
+export default function LandingNavbar() {
   const { data: session } = useSession()
   return (
     <nav className=' top-0 z-50 w-full  backdrop-blur-sm'>
@@ -19,14 +21,24 @@ export default function ClientNavbar() {
           id='center'
         >
           <ul className='grid grid-cols-3 gap-16'>
-            <NavLink href='#features'>Features</NavLink>
-            <NavLink href='#pricing'>Pricing</NavLink>
-            <NavLink href='#faq'>FAQs</NavLink>
+            <NavLink href='/#features'>Features</NavLink>
+            <NavLink href='/#pricing'>Pricing</NavLink>
+            <NavLink href='/#faq'>FAQs</NavLink>
           </ul>
         </div>
 
         <div id='right'>
-          <LandingButton className='bg-gray-700'>Get Started</LandingButton>
+          {session ? (
+            <Link href={`/u/${session?.user?.id}`}>
+              <Avatar
+                size='sm'
+                src={session.user?.image}
+                name={session.user?.name}
+              />
+            </Link>
+          ) : (
+            <LandingButton className='bg-gray-700'>Get Started</LandingButton>
+          )}
         </div>
       </div>
     </nav>

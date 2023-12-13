@@ -1,6 +1,6 @@
 'use client'
 import EmailForm from '@/app/(root)/waitlist/EmailForm'
-import ClientNavbar from '@/components/layout/client-navbar'
+import LandingNavbar from '@/components/layout/landing-navbar'
 import { CheckCircle2 } from 'lucide-react'
 export default function Home() {
   return (
