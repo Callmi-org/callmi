@@ -42,13 +42,13 @@ export default function Pricing() {
           />
           <div className='absolute bottom-0 left-0 h-full w-full bg-gradient-to-t from-[#FF3347] from-25% to-transparent'></div>
         </div>
-        <Footer />
+        <LandingFooter />
       </div>
     </section>
   )
 }
 
-function Footer() {
+function LandingFooter() {
   return (
     <div className='z-20 -mt-[30%] w-full bg-transparent py-10 md:-mt-52'>
       <div className='mx-auto flex w-full max-w-9xl flex-col gap-16 rounded-3xl bg-[#080808] p-10 md:rounded-[3.5rem] md:p-16'>
@@ -78,13 +78,13 @@ function Footer() {
           </div>
           <div className='flex w-full max-w-xxs justify-between gap-8 text-xs'>
             <ul className='flex flex-col gap-2 text-left'>
-              <span className='text-gray-600'>Product</span>
+              <span className='font-bold text-gray-500'>Product</span>
               <FooterNavLink href='#features'>Features</FooterNavLink>
               <FooterNavLink href='#pricing'>Pricing</FooterNavLink>
               <FooterNavLink href='#faq'>FAQs</FooterNavLink>
             </ul>
             <ul className='flex flex-col gap-2 text-left'>
-              <span className='text-gray-600'>Pages</span>
+              <span className='font-bold text-gray-500'>Pages</span>
               <FooterNavLink href='/terms'>Terms & Conditions</FooterNavLink>
               <FooterNavLink href='/privacy'>Privacy Policy</FooterNavLink>
             </ul>
