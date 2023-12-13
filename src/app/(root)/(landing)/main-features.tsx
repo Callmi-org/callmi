@@ -6,7 +6,7 @@ export default function MainFeatures() {
   return (
     <section
       id='features'
-      className='flex min-h-screen w-full max-w-9xl flex-col items-center gap-16 px-4 pb-8 pt-12'
+      className='mx-auto flex w-full max-w-9xl flex-col items-center gap-16 pb-8 pt-12'
     >
       <h1
         className='max-w-xl text-center text-3xl leading-tight md:text-[3rem]'

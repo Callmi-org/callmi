@@ -7,10 +7,10 @@ export default function Hero() {
   return (
     <section
       id='hero'
-      className='min-h-screen bg-lime-50 pb-16 text-center md:pb-24'
+      className='bg-lime-50 pb-16 text-center md:pb-24'
       style={{
         backgroundImage: `url('/landing/overlay-light.jpg')`,
-        backgroundSize: 'cover',
+        backgroundSize: '100% 100%',
       }}
     >
       <ClientNavbar />

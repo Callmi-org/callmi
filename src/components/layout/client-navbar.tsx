@@ -9,7 +9,7 @@ import LandingButton from '../landing/landing-button'
 export default function ClientNavbar() {
   const { data: session } = useSession()
   return (
-    <nav className=' top-0 z-50 w-screen  backdrop-blur-sm'>
+    <nav className=' top-0 z-50 w-full  backdrop-blur-sm'>
       <div className='mx-auto flex w-full max-w-9xl items-center justify-between p-4'>
         <div id='left'>
           <NavLogo />

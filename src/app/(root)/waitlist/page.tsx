@@ -1,10 +1,16 @@
 'use client'
 import EmailForm from '@/app/(root)/waitlist/EmailForm'
-import Image from 'next/image'
-
+import ClientNavbar from '@/components/layout/client-navbar'
+import { CheckCircle2 } from 'lucide-react'
 export default function Home() {
   return (
-    <main className='flex h-full flex-1 flex-col items-center justify-center bg-stone-50 px-4 pt-20'>
+    <main
+      className='flex h-full flex-1 flex-col items-center justify-center px-4 pt-20'
+      style={{
+        backgroundImage: `url('/landing/overlay-light.jpg')`,
+        backgroundSize: '100% 100%',
+      }}
+    >
       <section className='flex h-full flex-col items-center justify-center'>
         <div className='mx-auto grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2'>
           <div className='flex max-w-md flex-col justify-center gap-6'>
@@ -36,12 +42,7 @@ export default function Home() {
 function ListItem({ children }: { children: React.ReactNode }) {
   return (
     <li className='flex gap-2'>
-      <Image
-        src='/svg/check.svg'
-        alt='check'
-        height={16}
-        width={16}
-      />
+      <CheckCircle2 className='h-6 w-6 fill-brand text-white' />
       {children}
     </li>
   )
