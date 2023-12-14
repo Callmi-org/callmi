@@ -1,7 +1,7 @@
 'use client'
 import { useSession } from 'next-auth/react'
 import SelectPill from '@/components/form/select-pill'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { expertiseData, industryData } from '@/data/general'
 import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
@@ -25,6 +25,20 @@ export default function OnboardingStep2() {
     (session?.user.industry.map(el => convertEnumToText(el)) as Industry[]) ||
       []
   )
+
+  useEffect(() => {
+    if (status !== 'authenticated') return
+    if (session?.user.expertise) {
+      setSelectedExpertises(
+        session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]
+      )
+    }
+    if (session?.user.industry) {
+      setSelectedIndustries(
+        session?.user.industry.map(el => convertEnumToText(el)) as Industry[]
+      )
+    }
+  }, [session?.user.expertise, session?.user.industry, status])
 
   const [loading, setLoading] = useState(false)
 

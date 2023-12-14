@@ -82,8 +82,8 @@ export default function Top(profile: User) {
       <div className='grid w-full grid-cols-1 gap-8 md:grid-cols-3 2xl:max-w-[83.33%]'>
         {profile.charityName && profile.charityUrl && (
           <Link href={profile.charityUrl}>
-            <div className='group flex min-h-[11rem]  flex-col gap-3 rounded-xl bg-black p-6 text-white transition-colors hover:bg-black/90'>
-              <HeartHandshake className='h-8 w-8 stroke-[1.5px]' />
+            <div className='group flex min-h-[11rem]  flex-col gap-3 rounded-xl bg-[#E6FFCC] p-6 transition-colors hover:bg-[#E6FFCC]/80'>
+              <HeartHandshake className='h-8 w-8 stroke-[1.5px] transition-all  group-hover:fill-brand group-hover:stroke-brand' />
               <small>
                 {profile.name.split(' ')[0]} is donating their fees to
               </small>

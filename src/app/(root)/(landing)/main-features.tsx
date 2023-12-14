@@ -14,7 +14,7 @@ export default function MainFeatures() {
           textWrap: 'balance',
         }}
       >
-        Join MENA&apos;s biggest commuity of{' '}
+        Join MENA&apos;s biggest community of{' '}
         <HighlightSpan>experts</HighlightSpan>
       </h1>
       <Feature image='/landing/features/1.png'>

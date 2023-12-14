@@ -1,19 +1,25 @@
 'use client'
-import { Menu } from 'lucide-react'
-import Link from 'next/link'
 import NavLogo from './nav-logo'
 import Avatar from '@/components/general/avatar'
 import { useSession } from 'next-auth/react'
-import { NavLink } from './navlink'
-import LandingButton from '../landing/landing-button'
 import { motion } from 'framer-motion'
 import { Button } from '../ui/button'
+import { useToast } from '../ui/use-toast'
 
 export default function LandingNavbar() {
   const { data: session } = useSession()
+  const { toast } = useToast()
+
+  function copyEmail() {
+    navigator.clipboard.writeText('w@callmi.co')
+    toast({
+      title: 'w@callmi.co copied to clipboard',
+    })
+  }
+
   return (
     <nav className=' top-0 z-50 w-full border-b  backdrop-blur-sm'>
-      <div className='mx-auto flex w-full max-w-9xl items-center justify-between p-4'>
+      <div className='mx-auto flex w-full max-w-10xl items-center justify-between p-4'>
         <div id='left'>
           <NavLogo />
         </div>
@@ -23,7 +29,12 @@ export default function LandingNavbar() {
           id='right'
         >
           <a href='mailto:w@callmi.co'>
-            <Button variant='outline'>Report A Problem</Button>
+            <Button
+              onClick={copyEmail}
+              variant='outline'
+            >
+              Report A Problem
+            </Button>
           </a>
           {/* {session ? (
             <Link href={`/u/${session?.user?.id}`}>

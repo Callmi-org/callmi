@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Button } from '../ui/button'
 import { Loader2 } from 'lucide-react'
 
@@ -7,9 +8,17 @@ type Props = {
   children?: React.ReactNode
   onClick?: () => void
   loading?: boolean
+  hasSkip?: boolean
+  skipHref?: string
 }
 
-export function ClientSubmitButton({ children, onClick, loading }: Props) {
+export function ClientSubmitButton({
+  children,
+  onClick,
+  loading,
+  hasSkip,
+  skipHref,
+}: Props) {
   return (
     <>
       <Button
@@ -37,6 +46,17 @@ export function ClientSubmitButton({ children, onClick, loading }: Props) {
           children
         )}
       </Button>
+      {hasSkip && (
+        <Link href={skipHref!}>
+          <Button
+            variant='link'
+            type='button'
+            className='w-full'
+          >
+            Skip
+          </Button>
+        </Link>
+      )}
     </>
   )
 }

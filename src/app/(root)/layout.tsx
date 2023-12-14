@@ -5,6 +5,7 @@ import Navbar from '@/components/layout/expert-navbar'
 import Footer from '@/components/layout/footer'
 import Providers from '../providers'
 const dmSans = DM_Sans({ subsets: ['latin'] })
+import { Toaster } from '@/components/ui/toaster'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://callmi.co'),
@@ -29,6 +30,7 @@ export default function RootLayout({
         >
           {children}
           {/* <Footer /> */}
+          <Toaster />
         </body>
       </Providers>
     </html>
