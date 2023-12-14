@@ -2,7 +2,7 @@
 
 import { cn } from '@/utils/utils'
 import { motion } from 'framer-motion'
-import { Wrapper } from '../Form/WrapIfHref'
+import { Wrapper } from '../form/wrap-if-href'
 
 type Props = React.ComponentPropsWithoutRef<'button'> & {
   href?: string
@@ -16,7 +16,7 @@ export function PrimaryButton({ className, children, href, onClick }: Props) {
         whileHover='hover'
         whileTap='tap'
         className={cn(
-          'bg-brand w-full max-w-sm rounded-3xl border py-4 text-white',
+          'w-full max-w-sm rounded-3xl border bg-brand py-4 text-white',
           className
         )}
         type='button'

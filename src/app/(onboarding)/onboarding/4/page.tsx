@@ -1,9 +1,9 @@
-import Availability from '@/components/Form/Availability'
-import { SubmitButton } from '@/components/Form/SubmitButton'
+import Availability from '@/components/form/availability'
+import { SubmitButton } from '@/components/form/submit-button'
 import { daysOfWeek } from '@/data/general'
 import { formAction } from './action'
-import OnboardingSkeleton from '../../OnboardingSkeleton'
-import BackButton from '@/components/Form/BackButton'
+import OnboardingSkeleton from '../../onboarding-skeleton'
+import BackButton from '@/components/form/back-button'
 
 export default function OnboardingStep4() {
   return (

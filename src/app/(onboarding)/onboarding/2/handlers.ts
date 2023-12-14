@@ -1,4 +1,4 @@
-import { Toast, ToastProps } from '@/components/ui/toast'
+import { ToastProps } from '@/components/ui/toast'
 
 export default function handleSelect<T extends Expertise | Industry>(
   e: React.ChangeEvent<HTMLInputElement>,

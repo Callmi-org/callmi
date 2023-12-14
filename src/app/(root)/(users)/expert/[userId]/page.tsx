@@ -1,5 +1,5 @@
 'use client'
-import BookingSidebar from '@/components/UserPage/BookingSidebar'
+import BookingSidebar from '@/components/expert/booking-sidebar'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
 import { useState } from 'react'
@@ -32,7 +32,7 @@ export default function UserPage() {
   // }
 
   return (
-    <main className='min-h-screen px-4 pb-20 pt-28 md:px-12 2xl:pb-4'>
+    <main className='min-h-screen px-4 pb-20 pt-8 md:px-12 2xl:pb-4'>
       <div className='mx-auto grid w-full flex-1 grid-cols-3 grid-rows-3 gap-8'>
         <div className='col-span-3 row-span-3 flex flex-col gap-4 xl:col-span-2'>
           <Top {...profile} />

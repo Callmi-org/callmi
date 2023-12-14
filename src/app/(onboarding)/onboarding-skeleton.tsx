@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import ImageRight from './ImageRight'
+import ImageRight from './image-right'
 import { cn } from '@/utils/utils'
 
 type Props = {
@@ -29,16 +29,16 @@ export default function OnboardingSkeleton({
       >
         <div className='relative flex items-center p-2 md:p-4'>
           <Image
-            src='/svg/logo.svg'
+            src='/logo.png'
             alt='Callmi logo'
-            width='80'
-            height='80'
-            className='w-12 md:w-20'
+            width={64}
+            height={64}
+            className='w-8 md:w-14'
           />
           <h1 className='text-3xl md:text-4xl'>Callmi</h1>
           <div
             className={cn(
-              'bg-brand absolute bottom-0 left-0 h-1 rounded-r',
+              'absolute bottom-0 left-0 h-1 rounded-r bg-brand',
               stepWidthClasses[step]
             )}
           ></div>

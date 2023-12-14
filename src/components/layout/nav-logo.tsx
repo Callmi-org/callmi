@@ -8,17 +8,17 @@ export default function NavLogo() {
   return (
     <Link
       href='/'
-      id='nav-left'
-      className='flex items-center'>
+      className='flex items-center gap-1'
+    >
       <motion.div whileHover={{ rotate: 180, scale: 1.1 }}>
         <Image
-          src='/svg/logo.svg'
+          src='/logo.png'
           alt='logo'
-          height={64}
-          width={64}
+          height={32}
+          width={32}
         />
       </motion.div>
-      <h1 className='text-2xl tracking-wide'>Callmi</h1>
+      <h1 className='text-3xl tracking-wide'>Callmi</h1>
     </Link>
   )
 }

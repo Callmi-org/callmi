@@ -1,5 +1,5 @@
 'use client'
-import Avatar from '@/components/General/Avatar'
+import Avatar from '@/components/general/avatar'
 import { Button } from '@/components/ui/button'
 import {
   MapPin,
@@ -78,9 +78,7 @@ export default function Top(profile: User) {
           </Button>
         </div>
       </div>
-      <p className='flex-1 text-justify text-base text-gray-600'>
-        {profile.bio}
-      </p>
+      <p className='flex-1  text-base text-gray-600'>{profile.bio}</p>
       <div className='grid w-full grid-cols-1 gap-8 md:grid-cols-3 2xl:max-w-[83.33%]'>
         {profile.charityName && profile.charityUrl && (
           <Link href={profile.charityUrl}>

@@ -69,6 +69,10 @@
     --radius: 0.5rem;
   } */
 }
+html,
+body {
+  scroll-behavior: smooth;
+}
 
 @layer base {
   * {
@@ -100,7 +104,7 @@ h1 {
 }
 
 p {
-  @apply text-lg leading-relaxed tracking-tight md:text-xl md:leading-relaxed;
+  @apply leading-relaxed  text-gray-600 md:leading-relaxed;
 }
 
 @layer components {
@@ -120,4 +124,8 @@ h1.onboarding {
 
 p.onboarding-step {
   @apply text-sm font-medium tracking-wider text-gray-500;
+}
+
+h1.section-title {
+  @apply text-2xl font-semibold md:text-5xl;
 }

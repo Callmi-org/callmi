@@ -1,15 +1,15 @@
 'use client'
 import { useSession } from 'next-auth/react'
-import SelectPill from '@/components/Form/SelectPill'
+import SelectPill from '@/components/form/select-pill'
 import { useState } from 'react'
 import { expertiseData, industryData } from '@/data/general'
 import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
 import { convertEnumToText } from '@/utils/prisma'
-import BackButton from '@/components/Form/BackButton'
+import BackButton from '@/components/form/back-button'
 import { handleSubmit } from './handlers'
-import { ClientSubmitButton } from '@/components/Form/ClientSubmitButton'
-import OnboardingSkeleton from '../../OnboardingSkeleton'
+import { ClientSubmitButton } from '@/components/form/client-submit-button'
+import OnboardingSkeleton from '../../onboarding-skeleton'
 
 export default function OnboardingStep2() {
   const { data: session, status } = useSession()
