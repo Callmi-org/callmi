@@ -142,7 +142,7 @@ export const faqData = [
   {
     question: 'Can I set my own rates for calls?',
     answer:
-      'Yes, you have complete control over your rates. You can set your price per minute or per call, depending on your preference.',
+      'Yes, you have complete control over your rates. You can set your price per hour.',
   },
   {
     question: 'What if I need to reschedule a call?',
