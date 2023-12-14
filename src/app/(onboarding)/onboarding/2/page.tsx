@@ -12,34 +12,34 @@ import { ClientSubmitButton } from '@/components/form/client-submit-button'
 import OnboardingSkeleton from '../../onboarding-skeleton'
 
 export default function OnboardingStep2() {
-  const { data: session, status } = useSession({ required: true })
+  // const { data: session, status } = useSession({ required: true })
   const { push } = useRouter()
   const { toast } = useToast()
-  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
+  // if (session?.user.onboarded) push(`/expert/${session.user.id}`)
 
   const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>(
-    (session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]) ||
-      []
+    // (session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]) ||
+    []
   )
 
   const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>(
-    (session?.user.industry.map(el => convertEnumToText(el)) as Industry[]) ||
-      []
+    // (session?.user.industry.map(el => convertEnumToText(el)) as Industry[]) ||
+    []
   )
 
-  useEffect(() => {
-    if (status !== 'authenticated') return
-    if (session?.user.expertise) {
-      setSelectedExpertises(
-        session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]
-      )
-    }
-    if (session?.user.industry) {
-      setSelectedIndustries(
-        session?.user.industry.map(el => convertEnumToText(el)) as Industry[]
-      )
-    }
-  }, [session?.user.expertise, session?.user.industry, status])
+  // useEffect(() => {
+  //   if (status !== 'authenticated') return
+  //   if (session?.user.expertise) {
+  //     setSelectedExpertises(
+  //       session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]
+  //     )
+  //   }
+  //   if (session?.user.industry) {
+  //     setSelectedIndustries(
+  //       session?.user.industry.map(el => convertEnumToText(el)) as Industry[]
+  //     )
+  //   }
+  // }, [session?.user.expertise, session?.user.industry, status])
 
   const [loading, setLoading] = useState(false)
 
@@ -93,7 +93,7 @@ export default function OnboardingStep2() {
             handleSubmit({
               selectedExpertises,
               selectedIndustries,
-              userId: session?.user.id!,
+              userId: '123',
               toast,
               setLoading,
               push,

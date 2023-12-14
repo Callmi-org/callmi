@@ -12,13 +12,13 @@ import { useState } from 'react'
 import { formatCurrency } from '@/utils/utils'
 
 export default function OnboardingStep3() {
-  const { data: session } = useSession({ required: true })
+  // const { data: session } = useSession({ required: true })
   const [loading, setLoading] = useState(false)
   const { push } = useRouter()
   const [costPerHour, setCostPerHour] = useState<number>(250)
-  const [bio, setBio] = useState<string>(session?.user?.bio!)
+  const [bio, setBio] = useState<string>('')
 
-  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
+  // if (session?.user.onboarded) push(`/expert/${session.user.id}`)
 
   return (
     <OnboardingSkeleton step={3}>
@@ -77,7 +77,7 @@ export default function OnboardingStep3() {
               bio,
               setLoading,
               push,
-              userId: session?.user.id!,
+              userId: '123',
             })
           }
         >

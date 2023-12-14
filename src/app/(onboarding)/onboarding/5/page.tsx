@@ -11,13 +11,13 @@ import { useRouter } from 'next/navigation'
 
 export default function OnboardingStep5() {
   // const session = await getServerSession(options)
-  const { data: session } = useSession({ required: true })
+  // const { data: session } = useSession({ required: true })
   const { push } = useRouter()
   const [loading, setLoading] = useState(false)
   const [charityName, setCharityName] = useState('')
   const [charityUrl, setCharityUrl] = useState('')
 
-  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
+  // if (session?.user.onboarded) push(`/expert/${session.user.id}`)
 
   return (
     <OnboardingSkeleton step={5}>
@@ -55,7 +55,7 @@ export default function OnboardingStep5() {
           loading={loading}
           onClick={() =>
             handleSubmit({
-              id: session?.user.id!,
+              id: '123',
               charityName,
               charityUrl,
               setLoading,

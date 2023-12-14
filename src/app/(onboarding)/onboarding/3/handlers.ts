@@ -15,21 +15,21 @@ export const handleSubmit = async ({
 }: HandleSubmitProps) => {
   setLoading(true)
 
-  const res = await fetch(`/api/onboarding/${userId}/3`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      costPerHour,
-      bio,
-    }),
-  })
+  // const res = await fetch(`/api/onboarding/${userId}/3`, {
+  //   method: 'PUT',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //     costPerHour,
+  //     bio,
+  //   }),
+  // })
 
-  if (!res.ok) {
-    console.error(res)
-    setLoading(false)
-    return
-  }
+  // if (!res.ok) {
+  //   console.error(res)
+  //   setLoading(false)
+  //   return
+  // }
   push('/onboarding/4')
 }

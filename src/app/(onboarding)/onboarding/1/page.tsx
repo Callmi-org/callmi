@@ -9,9 +9,9 @@ import formAction from './action'
 import OnboardingSkeleton from '../../onboarding-skeleton'
 
 export default async function OnboardingStep1() {
-  const session = await getServerSession(options)
-  if (!session) redirect('/api/auth/signin')
-  if (session.user.onboarded) redirect(`/expert/${session.user.id}`)
+  // const session = await getServerSession(options)
+  // if (!session) redirect('/api/auth/signin')
+  // if (session.user.onboarded) redirect(`/expert/${session.user.id}`)
 
   return (
     <OnboardingSkeleton step={1}>
@@ -25,14 +25,15 @@ export default async function OnboardingStep1() {
           label='Name'
           name='name'
           type='text'
-          value={session?.user?.name!}
+          // value={session?.user?.name!}
+          placeholder='Enter your name here'
           required
         />
         <Input
           label='Email'
           name='email-visible'
           type='email'
-          value={session?.user?.email!}
+          value='w@callmi.co'
           disabled
           required
         />
@@ -41,14 +42,14 @@ export default async function OnboardingStep1() {
           name='company'
           type='string'
           placeholder='Enter your company name'
-          value={session?.user?.company!}
+          // value={session?.user?.company!}
         />
         <Input
           label='Position'
           name='position'
           type='string'
           placeholder='Enter your position at the company'
-          value={session?.user?.position!}
+          // value={session?.user?.position!}
           required
         />
         <Select
@@ -57,9 +58,9 @@ export default async function OnboardingStep1() {
           options={timeZones}
           required
           placeholder='Select your time zone'
-          value={session?.user?.timezone!}
+          // value={session?.user?.timezone!}
         />
-        <input
+        {/* <input
           type='hidden'
           name='email'
           value={session.user.email!}
@@ -73,7 +74,7 @@ export default async function OnboardingStep1() {
           type='hidden'
           name='userId'
           value={session.user.id}
-        />
+        /> */}
         <SubmitButton>Continue</SubmitButton>
       </form>
     </OnboardingSkeleton>

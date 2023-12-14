@@ -17,28 +17,28 @@ export default async function handleSubmit({
 }: HandleSubmitProps) {
   setLoading(true)
   // Validate data
-  if (!id || !charityName || !charityUrl) {
-    console.log('Missing data')
-    console.log({ id, charityName, charityUrl })
-    return
-  }
+  // if (!id || !charityName || !charityUrl) {
+  //   console.log('Missing data')
+  //   console.log({ id, charityName, charityUrl })
+  //   return
+  // }
 
-  const res = await fetch(`/api/onboarding/${id}/5`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      charityName,
-      charityUrl,
-    }),
-  })
+  // const res = await fetch(`/api/onboarding/${id}/5`, {
+  //   method: 'PUT',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //     charityName,
+  //     charityUrl,
+  //   }),
+  // })
 
-  if (!res.ok) {
-    console.error(res)
-    setLoading(false)
-    return
-  }
+  // if (!res.ok) {
+  //   console.error(res)
+  //   setLoading(false)
+  //   return
+  // }
 
   // go to dashboard
   return push(`/expert/${id}`)

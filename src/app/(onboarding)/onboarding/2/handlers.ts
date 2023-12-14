@@ -49,23 +49,23 @@ export const handleSubmit = async ({
     })
     return
   }
-  console.log({ selectedExpertises, selectedIndustries })
+  // console.log({ selectedExpertises, selectedIndustries })
 
-  const res = await fetch(`/api/onboarding/${userId}/2`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      expertise: selectedExpertises,
-      industry: selectedIndustries,
-    }),
-  })
+  // const res = await fetch(`/api/onboarding/${userId}/2`, {
+  //   method: 'PUT',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //     expertise: selectedExpertises,
+  //     industry: selectedIndustries,
+  //   }),
+  // })
 
-  if (!res.ok) {
-    console.error(res)
-    setLoading(false)
-    return
-  }
+  // if (!res.ok) {
+  //   console.error(res)
+  //   setLoading(false)
+  //   return
+  // }
   push('/onboarding/3')
 }
