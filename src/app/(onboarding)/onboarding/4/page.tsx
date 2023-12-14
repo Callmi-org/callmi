@@ -4,8 +4,16 @@ import { daysOfWeek } from '@/data/general'
 import { formAction } from './action'
 import OnboardingSkeleton from '../../onboarding-skeleton'
 import BackButton from '@/components/form/back-button'
+import { getServerSession } from 'next-auth/next'
+import options from '@/app/api/auth/[...nextauth]/options'
+import { redirect } from 'next/navigation'
 
-export default function OnboardingStep4() {
+export default async function OnboardingStep4() {
+  const session = await getServerSession(options)
+
+  if (!session) redirect('/api/auth/signin')
+  if (session.user.onboarded) redirect(`/expert/${session.user.id}`)
+
   return (
     <OnboardingSkeleton step={4}>
       <BackButton href='/onboarding/3'>Back</BackButton>

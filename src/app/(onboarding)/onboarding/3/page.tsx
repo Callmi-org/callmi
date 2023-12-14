@@ -8,22 +8,17 @@ import BackButton from '@/components/form/back-button'
 import InputWithLabel from '@/components/form/input-with-label'
 import TextareaWithLabel from '@/components/form/textarea-with-label'
 import { handleSubmit } from './handlers'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { formatCurrency } from '@/utils/utils'
 
 export default function OnboardingStep3() {
-  const { data: session, status } = useSession({ required: true })
+  const { data: session } = useSession({ required: true })
   const [loading, setLoading] = useState(false)
   const { push } = useRouter()
-  const [costPerHour, setCostPerHour] = useState<number>(
-    session?.user?.costPerHour!
-  )
+  const [costPerHour, setCostPerHour] = useState<number>(250)
   const [bio, setBio] = useState<string>(session?.user?.bio!)
 
-  useEffect(() => {
-    setCostPerHour(session?.user?.costPerHour!)
-    setBio(session?.user?.bio!)
-  }, [status, session?.user?.costPerHour, session?.user?.bio])
+  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
 
   return (
     <OnboardingSkeleton step={3}>

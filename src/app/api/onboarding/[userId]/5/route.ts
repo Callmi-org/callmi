@@ -28,6 +28,7 @@ export async function PUT(
     },
     data: {
       ...body,
+      onboarded: true,
     },
   })
   console.log({ result })

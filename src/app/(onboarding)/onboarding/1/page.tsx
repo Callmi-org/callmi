@@ -11,6 +11,7 @@ import OnboardingSkeleton from '../../onboarding-skeleton'
 export default async function OnboardingStep1() {
   const session = await getServerSession(options)
   if (!session) redirect('/api/auth/signin')
+  if (session.user.onboarded) redirect(`/expert/${session.user.id}`)
 
   return (
     <OnboardingSkeleton step={1}>

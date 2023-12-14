@@ -2,11 +2,8 @@
 
 import BackButton from '@/components/form/back-button'
 import OnboardingSkeleton from '../../onboarding-skeleton'
-import { SubmitButton } from '@/components/form/submit-button'
 import InputWithLabel from '@/components/form/input-with-label'
 import handleSubmit from './handlers'
-import { getServerSession } from 'next-auth'
-import options from '@/app/api/auth/[...nextauth]/options'
 import { useSession } from 'next-auth/react'
 import { ClientSubmitButton } from '@/components/form/client-submit-button'
 import { useState } from 'react'
@@ -17,10 +14,10 @@ export default function OnboardingStep5() {
   const { data: session } = useSession({ required: true })
   const { push } = useRouter()
   const [loading, setLoading] = useState(false)
-  const [charityName, setCharityName] = useState(
-    session?.user.charityName || ''
-  )
-  const [charityUrl, setCharityUrl] = useState(session?.user.charityUrl || '')
+  const [charityName, setCharityName] = useState('')
+  const [charityUrl, setCharityUrl] = useState('')
+
+  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
 
   return (
     <OnboardingSkeleton step={5}>

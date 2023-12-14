@@ -12,9 +12,10 @@ import { ClientSubmitButton } from '@/components/form/client-submit-button'
 import OnboardingSkeleton from '../../onboarding-skeleton'
 
 export default function OnboardingStep2() {
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession({ required: true })
   const { push } = useRouter()
   const { toast } = useToast()
+  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
 
   const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>(
     (session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]) ||
@@ -42,7 +43,6 @@ export default function OnboardingStep2() {
 
   const [loading, setLoading] = useState(false)
 
-  if (status === 'unauthenticated') return push('/api/auth/signin')
   return (
     <OnboardingSkeleton
       wide
