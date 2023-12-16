@@ -11,7 +11,7 @@ import FaqItem from '@/components/Landing/FAQ'
 import { redirect } from 'next/navigation'
 
 export default function LandingPage() {
-  redirect('/waitlist')
+  // redirect('/waitlist')
   // const { categories } = useShuffleCategories(categoryData)
   const categories = categoryData
 
