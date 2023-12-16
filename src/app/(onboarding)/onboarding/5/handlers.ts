@@ -20,6 +20,7 @@ export default async function handleSubmit({
   if (!id || !charityName || !charityUrl) {
     console.log('Missing data')
     console.log({ id, charityName, charityUrl })
+    setLoading(false)
     return
   }
 

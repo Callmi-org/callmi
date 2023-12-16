@@ -25,7 +25,9 @@ const options: AuthOptions = {
     newUser: '/onboarding/1',
   },
   callbacks: {
-    async session({ session, user }) {
+    async session({  session, user}:any) {
+      user.expertise= user.expertise===null? []:JSON.parse(user.expertise)
+      user.industry= user.industry===null? []:JSON.parse(user.industry)
       // @ts-ignore
       session.user = user
       return session

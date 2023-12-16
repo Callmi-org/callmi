@@ -16,27 +16,24 @@ export default function OnboardingStep2() {
   const { push } = useRouter()
   const { toast } = useToast()
   if (session?.user.onboarded) push(`/expert/${session.user.id}`)
-
   const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>(
-    (session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]) ||
-      []
-  )
-
-  const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>(
-    (session?.user.industry.map(el => convertEnumToText(el)) as Industry[]) ||
-      []
-  )
+    Array.isArray(session?.user.expertise)?session?.user.expertise as Expertise[]:[]
+    )
+    
+    const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>(
+      Array.isArray(session?.user.expertise)?session?.user.industry as Industry[]:[]
+      )
 
   useEffect(() => {
     if (status !== 'authenticated') return
-    if (session?.user.expertise) {
+    if (Array.isArray(session?.user.expertise)) {
       setSelectedExpertises(
-        session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]
+        session?.user.expertise as Expertise[]
       )
     }
-    if (session?.user.industry) {
+    if (Array.isArray(session?.user.industry)) {
       setSelectedIndustries(
-        session?.user.industry.map(el => convertEnumToText(el)) as Industry[]
+        session?.user.industry as Industry[]
       )
     }
   }, [session?.user.expertise, session?.user.industry, status])

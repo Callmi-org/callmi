@@ -6,9 +6,10 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider  = "mysql"
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
+  relationMode = "prisma"
 }
 
 model Account {
@@ -26,7 +27,7 @@ model Account {
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  @@index([userId], name: "Account_userId_index")
   @@unique([provider, providerAccountId])
 }
 
@@ -36,6 +37,7 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId], name: "session_userId_index")
 }
 
 model User {
@@ -51,14 +53,15 @@ model User {
   timezone      String?
   company       String?
   position      String?
-  expertise     Expertise[]
-  industry      Industry[]
+  expertise     String?
+  industry      String?
   bio           String?
   charityName   String?
   charityUrl    String?
   costPerHour   Int?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
+  Availability  Availability[]
 }
 
 model VerificationToken {
@@ -106,4 +109,13 @@ enum Industry {
   Real_Estate
   Venture_Capital
   Career_Expert
+}
+
+model Availability {
+  id     String @id @default(cuid())
+  day    String
+  time   String
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId], name: "availability_userId_index")
 }
