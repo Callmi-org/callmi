@@ -14,7 +14,7 @@ export default async function Navbar() {
         </div>
         <ul
           id='desktop-menu'
-          className='hidden gap-4'
+          className=' gap-4'
         >
           {!session && (
             <>
@@ -60,3 +60,11 @@ export default async function Navbar() {
     </nav>
   )
 }
+
+
+// https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?
+// client_id=869656362729-4i0gf61lff61itkc6r0fe77e0qvddbkq.apps.googleusercontent.com&
+// scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.events&response_type=code&
+// redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fcallback%2Fgoogle&state=oEEYBHaGpnVBvp28-Egnlxwmo1m3SZUHASXP4B8ljLY&
+// code_challenge=4UsD0Xoq2Q5DF3fRF3xFoeM8wK2SJVhU2zo2NsGUpkU&code_challenge_method=S256&service=lso&o2v=2&
+// theme=glif&flowName=GeneralOAuthFlow

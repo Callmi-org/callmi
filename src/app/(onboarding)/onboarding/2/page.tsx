@@ -15,15 +15,18 @@ export default function OnboardingStep2() {
   const { data: session, status } = useSession()
   const { push } = useRouter()
   const { toast } = useToast()
-
   const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>(
-    (session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]) ||
-      []
+    (Array.isArray(session?.user?.expertise)
+      ? (session?.user?.expertise.map(el =>
+          convertEnumToText(el)
+        ) as Expertise[])
+      : []) || []
   )
 
   const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>(
-    (session?.user.industry.map(el => convertEnumToText(el)) as Industry[]) ||
-      []
+    (Array.isArray(session?.user?.industry)
+      ? (session?.user?.industry.map(el => convertEnumToText(el)) as Industry[])
+      : []) || []
   )
 
   const [loading, setLoading] = useState(false)

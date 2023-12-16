@@ -7,10 +7,12 @@ import { timeZones } from '@/data/general'
 import Select from '@/components/Form/SelectWithLabel'
 import formAction from './action'
 import OnboardingSkeleton from '../../OnboardingSkeleton'
+import { generateUserUrlKey } from '@/services/users.service'
 
 export default async function OnboardingStep1() {
   const session = await getServerSession(options)
   if (!session) redirect('/api/auth/signin')
+  await generateUserUrlKey(session.user.name, session.user.id!)
 
   return (
     <OnboardingSkeleton step={1}>
