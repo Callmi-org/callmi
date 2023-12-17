@@ -1,4 +1,6 @@
 import prisma from '@/utils/prisma'
+import { getServerSession } from 'next-auth'
+import options from '@/app/api/auth/[...nextauth]/options'
 
 type HandleSubmitProps = {
   id: string
@@ -16,6 +18,7 @@ export default async function handleSubmit({
   push,
 }: HandleSubmitProps) {
   setLoading(true)
+	const session = await getServerSession(options)
   // Validate data
   if (!id || !charityName || !charityUrl) {
     console.log('Missing data')
@@ -40,7 +43,7 @@ export default async function handleSubmit({
     setLoading(false)
     return
   }
-
+	if (!session) return null
   // go to dashboard
-  return push(`/expert/${id}`)
+  return push(`/expert/${session.user.username}`)
 }
