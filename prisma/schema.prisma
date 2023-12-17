@@ -6,9 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "mysql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
   relationMode = "prisma"
 }
 
@@ -25,10 +25,10 @@ model Account {
   scope             String?
   id_token          String? @db.Text
   session_state     String?
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId], name: "Account_userId_index")
   @@unique([provider, providerAccountId])
+  @@index([userId], name: "Account_userId_index")
 }
 
 model Session {
@@ -37,6 +37,7 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId], name: "session_userId_index")
 }
 
@@ -53,8 +54,8 @@ model User {
   timezone      String?
   company       String?
   position      String?
-  expertise     Expertise     
-  industry      Industry
+  expertise     Expertise?
+  industry      Industry?
   bio           String?
   charityName   String?
   charityUrl    String?
@@ -117,5 +118,6 @@ model Availability {
   time   String
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId], name: "availability_userId_index")
 }
