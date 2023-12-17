@@ -18,15 +18,13 @@ export default function OnboardingStep2() {
   if (session?.user.onboarded) push(`/expert/${session.user.id}`)
 
   const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>(
-    (Array.isArray(session?.user?.expertise)
-      ? (session?.user?.expertise.map(el =>
-          convertEnumToText(el)
-        ) as Expertise[])
-      : []) || []
+    (session?.user.expertise?.map(el =>
+      convertEnumToText(el)
+    ) as Expertise[]) || []
   )
 
   const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>(
-    (session?.user.industry.map(el => convertEnumToText(el)) as Industry[]) ||
+    (session?.user.industry?.map(el => convertEnumToText(el)) as Industry[]) ||
       []
   )
 
