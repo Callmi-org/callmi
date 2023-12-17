@@ -9,6 +9,7 @@ datasource db {
   provider  = "mysql"
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
+	shadowDatabaseUrl = "mysql://localhost:3306/"
   relationMode = "prisma"
 }
 
