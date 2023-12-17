@@ -7,11 +7,11 @@ import { timeZones } from '@/data/general'
 import Select from '@/components/form/select-with-label'
 import formAction from './action'
 import OnboardingSkeleton from '../../onboarding-skeleton'
+import { generateUserUrlKey } from '@/services/users.service'
 
 export default async function OnboardingStep1() {
   const session = await getServerSession(options)
   if (!session) redirect('/api/auth/signin')
-  if (session.user.onboarded) redirect(`/expert/${session.user.id}`)
 
   return (
     <OnboardingSkeleton step={1}>

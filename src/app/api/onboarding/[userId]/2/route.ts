@@ -21,14 +21,14 @@ export async function PUT(
   console.log('before      ', { body })
 
   if (body.expertise?.length !== 0) {
-    body.expertise = body.expertise?.map((expertise: Expertise) =>
+    body.expertise = JSON.stringify(body.expertise?.map((expertise: Expertise) =>
       convertTextToEnum(expertise)
-    )
+    ))
   }
   if (body.industry?.length !== 0) {
-    body.industry = body.industry?.map((industry: Industry) =>
+    body.industry = JSON.stringify(body.industry?.map((industry: Industry) =>
       convertTextToEnum(industry)
-    )
+    ))
   }
   console.log('after     ', { body })
 
