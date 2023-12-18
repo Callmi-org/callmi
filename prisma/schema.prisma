@@ -6,11 +6,11 @@ generator client {
 }
 
 datasource db {
-  provider  = "mysql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
-	shadowDatabaseUrl = "mysql://localhost:3306/"
-  relationMode = "prisma"
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+  shadowDatabaseUrl = "mysql://localhost:3306/"
+  relationMode      = "prisma"
 }
 
 model Account {
@@ -28,8 +28,9 @@ model Account {
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  @@index([userId], name: "Account_userId_index")
+
   @@unique([provider, providerAccountId])
+  @@index([userId], name: "Account_userId_index")
 }
 
 model Session {
@@ -38,19 +39,20 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId], name: "session_userId_index")
 }
 
 model User {
-  id            String      @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  email         String?     @unique
+  email         String?        @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  onboarded     Boolean?    @default(false)
-  username      String?     @unique
+  onboarded     Boolean?       @default(false)
+  username      String?        @unique
   timezone      String?
   company       String?
   position      String?
@@ -60,8 +62,8 @@ model User {
   charityName   String?
   charityUrl    String?
   costPerHour   Int?
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   Availability  Availability[]
 }
 
@@ -113,10 +115,13 @@ enum Industry {
 }
 
 model Availability {
-  id     String @id @default(cuid())
-  day    String
-  time   String
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String @id @default(cuid())
+  day       String
+  startTime String
+  endTime   String
+  userId    String
+  sortIndex Int
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId], name: "availability_userId_index")
 }

@@ -10,7 +10,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function OnboardingStep5() {
-  // const session = await getServerSession(options)
   const { data: session } = useSession({ required: true })
   const { push } = useRouter()
   const [loading, setLoading] = useState(false)
@@ -56,6 +55,7 @@ export default function OnboardingStep5() {
           onClick={() =>
             handleSubmit({
               id: session?.user.id!,
+              username: session?.user.username!,
               charityName,
               charityUrl,
               setLoading,

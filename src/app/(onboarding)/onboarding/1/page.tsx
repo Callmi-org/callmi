@@ -8,12 +8,16 @@ import Select from '@/components/form/select-with-label'
 import formAction from './action'
 import OnboardingSkeleton from '../../onboarding-skeleton'
 import { generateUserUrlKey } from '../../../services/users.service'
+import MailService from '@/app/services/nodeMailer.service'
 
 export default async function OnboardingStep1() {
   const session = await getServerSession(options)
   if (!session) redirect('/api/auth/signin')
   if (session.user.onboarded) redirect(`/expert/${session.user.id}`)
-  if (session.user.username===null) await generateUserUrlKey(session.user.name, session.user.id!)
+  if (session.user.username === null) {
+    await generateUserUrlKey(session.user.name, session.user.id!)
+    await MailService.sendSignUpSuccessfullyMsg(session.user.email)
+  }
 
   return (
     <OnboardingSkeleton step={1}>
