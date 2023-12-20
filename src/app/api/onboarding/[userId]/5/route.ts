@@ -22,6 +22,8 @@ export async function PUT(
     return Response.json({ message: 'missing fields' })
   }
 
+  // Update user
+
   const result = await prisma.user.update({
     where: {
       id: userId,
