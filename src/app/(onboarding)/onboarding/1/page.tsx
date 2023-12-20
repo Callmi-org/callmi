@@ -1,17 +1,17 @@
+'use client'
 import options from '@/app/api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
 import Input from '@/components/form/input-with-label'
 import { redirect } from 'next/navigation'
 import { SubmitButton } from '@/components/form/submit-button'
-import { timeZones } from '@/data/general'
 import Select from '@/components/form/select-with-label'
 import formAction from './action'
 import OnboardingSkeleton from '../../onboarding-skeleton'
+import { useSession } from 'next-auth/react'
 
-export default async function OnboardingStep1() {
-  const session = await getServerSession(options)
-  if (!session) redirect('/api/auth/signin')
-  if (session.user.onboarded) redirect(`/expert/${session.user.id}`)
+export default function OnboardingStep1() {
+  const { data: session } = useSession({ required: true })
+  if (session?.user.onboarded) redirect(`/expert/${session.user.id}`)
 
   return (
     <OnboardingSkeleton step={1}>
@@ -54,25 +54,25 @@ export default async function OnboardingStep1() {
         <Select
           name='timezone'
           label='Time Zone'
-          options={timeZones}
+          options={Intl.supportedValuesOf('timeZone')}
           required
           placeholder='Select your time zone'
-          value={session?.user?.timezone!}
+          value={Intl.DateTimeFormat().resolvedOptions().timeZone}
         />
         <input
           type='hidden'
           name='email'
-          value={session.user.email!}
+          value={session?.user.email!}
         />
         <input
           type='hidden'
           name='originalName'
-          value={session.user.name!}
+          value={session?.user.name!}
         />
         <input
           type='hidden'
           name='userId'
-          value={session.user.id}
+          value={session?.user.id}
         />
         <SubmitButton>Continue</SubmitButton>
       </form>
