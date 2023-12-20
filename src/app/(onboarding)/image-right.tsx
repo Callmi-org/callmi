@@ -1,7 +1,7 @@
 import Image from 'next/image'
 export default function ImageRight() {
   return (
-    <div className='bg-brand relative col-span-1 hidden md:block'>
+    <div className='relative col-span-1 hidden bg-brand md:block'>
       <div className='sticky left-0 top-0 h-full max-h-screen w-full'>
         <Image
           src='/onboarding/onboarding.jpg'

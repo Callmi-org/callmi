@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id='hero'
-      className='w-full pb-16 text-center md:pb-24'
+      className='w-full pb-16 text-center shadow-sm md:pb-24'
       style={{
         backgroundImage: `url('/landing/overlay-light.jpg')`,
         backgroundSize: '100% 100%',

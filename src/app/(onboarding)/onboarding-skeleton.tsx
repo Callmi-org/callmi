@@ -25,7 +25,7 @@ export default function OnboardingSkeleton({
     <main className='grid w-full flex-1 grid-cols-1 bg-white md:grid-cols-2'>
       <div
         id='left'
-        className='col-span-1'
+        className='col-span-1 flex h-full flex-col'
       >
         <div className='relative flex items-center p-2 md:p-4'>
           <Image
@@ -45,7 +45,7 @@ export default function OnboardingSkeleton({
         </div>
         <div
           className={cn(
-            'mx-auto flex w-full flex-col gap-6 px-4 py-8 pb-24 md:gap-8 md:pb-8',
+            'mx-auto flex w-full flex-1 flex-col gap-6 px-4 py-8 pb-24 md:gap-8 md:pb-8',
             wide ? 'max-w-3xl' : 'max-w-xl'
           )}
         >

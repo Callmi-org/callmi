@@ -6,7 +6,6 @@ import Avatar from '@/components/general/avatar'
 import { useSession } from 'next-auth/react'
 import { NavLink } from './navlink'
 import LandingButton from '../landing/landing-button'
-import { motion } from 'framer-motion'
 
 export default function LandingNavbar() {
   const { data: session } = useSession()
@@ -29,7 +28,7 @@ export default function LandingNavbar() {
 
         <div id='right'>
           {session ? (
-            <Link href={`/u/${session?.user?.id}`}>
+            <Link href={`/expert/${session?.user?.username}`}>
               <Avatar
                 size='sm'
                 src={session.user?.image}

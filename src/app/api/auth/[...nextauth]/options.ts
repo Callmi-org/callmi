@@ -30,6 +30,15 @@ const options: AuthOptions = {
       session.user = user
       return session
     },
+    async jwt({ trigger, token }) {
+      if (trigger === 'signUp') {
+        // send welcome email
+        console.error(
+          '---------------- WELCOME TO CALLMI BRUH -----------------'
+        )
+      }
+      return token
+    },
   },
 }
 
