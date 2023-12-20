@@ -15,7 +15,7 @@ export default function OnboardingStep2() {
   const { data: session, status } = useSession({ required: true })
   const { push } = useRouter()
   const { toast } = useToast()
-  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
+  if (session?.user.onboarded) push(`/expert/${session.user.username}`)
 
   const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>(
     (session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]) ||

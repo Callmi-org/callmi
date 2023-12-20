@@ -11,19 +11,16 @@ export default async function formAction(data: FormData) {
   const timezone = data.get('timezone')
 
   console.log({ id, name, originalName, company, position, timezone })
-  // Validate data
-  if (!id || !name || !originalName) return redirect('/onboarding/1')
+  if (!id || !name || !originalName) return
 
-  // Create username based on fullname if not already used by another user
   let baseUsername = name.toString().replaceAll(' ', '').toLowerCase()
   let suffixedUsername = baseUsername
-  // Check if username is already taken
+
   let usernameTaken = await prisma.user.findUnique({
     where: { username: baseUsername },
   })
 
   if (usernameTaken) {
-    // If username is taken, add a one to the end of it, and check again. increment until we find a username that is not taken
     let i = 1
     while (usernameTaken) {
       suffixedUsername = baseUsername + i
@@ -34,7 +31,6 @@ export default async function formAction(data: FormData) {
     }
   }
 
-  // Update user
   await prisma.user.update({
     where: { id: id.toString() },
     data: {
@@ -46,6 +42,5 @@ export default async function formAction(data: FormData) {
     },
   })
 
-  // Redirect to next step
   redirect('/onboarding/2')
 }

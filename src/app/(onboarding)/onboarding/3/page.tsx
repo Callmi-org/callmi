@@ -18,7 +18,7 @@ export default function OnboardingStep3() {
   const [costPerHour, setCostPerHour] = useState<number>(250)
   const [bio, setBio] = useState<string>(session?.user?.bio!)
 
-  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
+  if (session?.user.onboarded) push(`/expert/${session.user.username}`)
 
   return (
     <OnboardingSkeleton step={3}>

@@ -17,7 +17,7 @@ export default function OnboardingStep5() {
   const [charityName, setCharityName] = useState('')
   const [charityUrl, setCharityUrl] = useState('')
 
-  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
+  if (session?.user.onboarded) push(`/expert/${session.user.username}`)
 
   return (
     <OnboardingSkeleton step={5}>
@@ -51,7 +51,7 @@ export default function OnboardingStep5() {
 
         <ClientSubmitButton
           hasSkip
-          skipHref='/expert/123'
+          skipHref={`/expert/${session?.user.username}`}
           loading={loading}
           onClick={() =>
             handleSubmit({

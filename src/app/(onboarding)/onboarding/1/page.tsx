@@ -1,6 +1,4 @@
 'use client'
-import options from '@/app/api/auth/[...nextauth]/options'
-import { getServerSession } from 'next-auth'
 import Input from '@/components/form/input-with-label'
 import { redirect } from 'next/navigation'
 import { SubmitButton } from '@/components/form/submit-button'
@@ -11,7 +9,7 @@ import { useSession } from 'next-auth/react'
 
 export default function OnboardingStep1() {
   const { data: session } = useSession({ required: true })
-  if (session?.user.onboarded) redirect(`/expert/${session.user.id}`)
+  if (session?.user.onboarded) redirect(`/expert/${session.user.username}`)
 
   return (
     <OnboardingSkeleton step={1}>
