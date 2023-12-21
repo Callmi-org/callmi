@@ -10,18 +10,59 @@ import TextareaWithLabel from '@/components/form/textarea-with-label'
 import { handleSubmit } from './handlers'
 import { useState } from 'react'
 import { formatCurrency } from '@/utils/utils'
+import Loading from '@/components/layout/loading'
 
 export default function OnboardingStep3() {
-  const { data: session } = useSession({ required: true })
+  const { data: session, status } = useSession({ required: true })
   const [loading, setLoading] = useState(false)
   const { push } = useRouter()
   const [costPerHour, setCostPerHour] = useState<number>(250)
   const [bio, setBio] = useState<string>(session?.user?.bio!)
 
-  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
+  if (session?.user.onboarded) push(`/expert/${session.user.username}`)
 
+  const children =
+    status === 'loading' ? (
+      <Loading />
+    ) : (
+      <Form
+        user={session?.user}
+        loading={loading}
+        setLoading={setLoading}
+        costPerHour={costPerHour}
+        setCostPerHour={setCostPerHour}
+        bio={bio}
+        setBio={setBio}
+        push={push}
+      />
+    )
+
+  return <OnboardingSkeleton step={3}>{children}</OnboardingSkeleton>
+}
+
+type FormProps = {
+  user: User
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  push: (url: string) => void
+  setCostPerHour: React.Dispatch<React.SetStateAction<number>>
+  setBio: React.Dispatch<React.SetStateAction<string>>
+  loading: boolean
+  costPerHour: number
+  bio: string
+}
+
+function Form({
+  user,
+  loading,
+  setLoading,
+  costPerHour,
+  setCostPerHour,
+  bio,
+  setBio,
+  push,
+}: FormProps) {
   return (
-    <OnboardingSkeleton step={3}>
+    <>
       <BackButton href='/onboarding/2'>Back</BackButton>
       <p className='onboarding-step'>Step 3/5</p>
       <h1 className='onboarding'>Next up...</h1>
@@ -77,13 +118,13 @@ export default function OnboardingStep3() {
               bio,
               setLoading,
               push,
-              userId: session?.user.id!,
+              userId: user.id!,
             })
           }
         >
           Continue
         </ClientSubmitButton>
       </form>
-    </OnboardingSkeleton>
+    </>
   )
 }

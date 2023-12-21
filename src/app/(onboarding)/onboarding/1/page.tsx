@@ -1,20 +1,32 @@
-import options from '@/app/api/auth/[...nextauth]/options'
-import { getServerSession } from 'next-auth'
+'use client'
 import Input from '@/components/form/input-with-label'
 import { redirect } from 'next/navigation'
 import { SubmitButton } from '@/components/form/submit-button'
-import { timeZones } from '@/data/general'
 import Select from '@/components/form/select-with-label'
 import formAction from './action'
 import OnboardingSkeleton from '../../onboarding-skeleton'
+import { useSession } from 'next-auth/react'
+import Loading from '@/components/layout/loading'
 
-export default async function OnboardingStep1() {
-  const session = await getServerSession(options)
-  if (!session) redirect('/api/auth/signin')
-  if (session.user.onboarded) redirect(`/expert/${session.user.id}`)
+export default function OnboardingStep1() {
+  const { data: session, status } = useSession({ required: true })
+  if (session?.user.onboarded) redirect(`/expert/${session.user.username}`)
 
+  console.log({ session })
+
+  const children =
+    status === 'loading' ? <Loading /> : <Form user={session.user} />
+
+  return <OnboardingSkeleton step={1}>{children}</OnboardingSkeleton>
+}
+
+type FormProps = {
+  user: User
+}
+
+function Form({ user }: FormProps) {
   return (
-    <OnboardingSkeleton step={1}>
+    <>
       <p className='onboarding-step'>Step 1/5</p>
       <h1 className='onboarding'>Welcome To Callmi</h1>
       <form
@@ -25,14 +37,14 @@ export default async function OnboardingStep1() {
           label='Name'
           name='name'
           type='text'
-          value={session?.user?.name!}
+          value={user.name}
           required
         />
         <Input
           label='Email'
           name='email-visible'
           type='email'
-          value={session?.user?.email!}
+          value={user.email}
           disabled
           required
         />
@@ -41,41 +53,41 @@ export default async function OnboardingStep1() {
           name='company'
           type='string'
           placeholder='Enter your company name'
-          value={session?.user?.company!}
+          value={user.company}
         />
         <Input
           label='Position'
           name='position'
           type='string'
           placeholder='Enter your position at the company'
-          value={session?.user?.position!}
+          value={user.position}
           required
         />
         <Select
           name='timezone'
           label='Time Zone'
-          options={timeZones}
+          options={Intl.supportedValuesOf('timeZone')}
           required
           placeholder='Select your time zone'
-          value={session?.user?.timezone!}
+          value={Intl.DateTimeFormat().resolvedOptions().timeZone}
         />
         <input
           type='hidden'
           name='email'
-          value={session.user.email!}
+          value={user.email}
         />
         <input
           type='hidden'
           name='originalName'
-          value={session.user.name!}
+          value={user.name}
         />
         <input
           type='hidden'
           name='userId'
-          value={session.user.id}
+          value={user.id}
         />
         <SubmitButton>Continue</SubmitButton>
       </form>
-    </OnboardingSkeleton>
+    </>
   )
 }

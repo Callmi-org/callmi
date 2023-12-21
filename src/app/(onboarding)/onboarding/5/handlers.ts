@@ -34,6 +34,10 @@ export default async function handleSubmit({
     }),
   })
 
+  const data = await res.json()
+
+  console.log({ data })
+
   if (!res.ok) {
     console.error(res)
     setLoading(false)
@@ -41,5 +45,5 @@ export default async function handleSubmit({
   }
 
   // go to dashboard
-  return push(`/expert/${id}`)
+  return push(`/expert/${data.username}`)
 }

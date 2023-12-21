@@ -11,10 +11,26 @@ export default async function formAction(data: FormData) {
   const timezone = data.get('timezone')
 
   console.log({ id, name, originalName, company, position, timezone })
-  // Validate data
-  if (!id || !name || !originalName) return redirect('/onboarding/1')
+  if (!id || !name || !originalName) return
 
-  // Update user
+  let baseUsername = name.toString().replaceAll(' ', '').toLowerCase()
+  let suffixedUsername = baseUsername
+
+  let usernameTaken = await prisma.user.findUnique({
+    where: { username: baseUsername },
+  })
+
+  if (usernameTaken) {
+    let i = 1
+    while (usernameTaken) {
+      suffixedUsername = baseUsername + i
+      i++
+      usernameTaken = await prisma.user.findUnique({
+        where: { username: suffixedUsername },
+      })
+    }
+  }
+
   await prisma.user.update({
     where: { id: id.toString() },
     data: {
@@ -22,9 +38,9 @@ export default async function formAction(data: FormData) {
       company: company?.toString(),
       position: position?.toString(),
       timezone: timezone?.toString(),
+      username: suffixedUsername,
     },
   })
 
-  // Redirect to next step
   redirect('/onboarding/2')
 }

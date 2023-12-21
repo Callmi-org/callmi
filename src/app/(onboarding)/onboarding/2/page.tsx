@@ -10,12 +10,12 @@ import BackButton from '@/components/form/back-button'
 import { handleSubmit } from './handlers'
 import { ClientSubmitButton } from '@/components/form/client-submit-button'
 import OnboardingSkeleton from '../../onboarding-skeleton'
+import Loading from '@/components/layout/loading'
 
 export default function OnboardingStep2() {
   const { data: session, status } = useSession({ required: true })
   const { push } = useRouter()
-  const { toast } = useToast()
-  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
+  if (session?.user.onboarded) push(`/expert/${session.user.username}`)
 
   const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>(
     (session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]) ||
@@ -43,11 +43,54 @@ export default function OnboardingStep2() {
 
   const [loading, setLoading] = useState(false)
 
+  const children =
+    status === 'loading' ? (
+      <Loading />
+    ) : (
+      <Form
+        user={session.user}
+        loading={loading}
+        setLoading={setLoading}
+        selectedExpertises={selectedExpertises}
+        selectedIndustries={selectedIndustries}
+        setSelectedExpertises={setSelectedExpertises}
+        setSelectedIndustries={setSelectedIndustries}
+      />
+    )
+
   return (
     <OnboardingSkeleton
       wide
       step={2}
     >
+      {children}
+    </OnboardingSkeleton>
+  )
+}
+
+type FormProps = {
+  user: User
+  selectedExpertises: Expertise[]
+  selectedIndustries: Industry[]
+  setSelectedExpertises: React.Dispatch<React.SetStateAction<Expertise[]>>
+  setSelectedIndustries: React.Dispatch<React.SetStateAction<Industry[]>>
+  loading: boolean
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function Form({
+  user,
+  selectedExpertises,
+  selectedIndustries,
+  setSelectedExpertises,
+  setSelectedIndustries,
+  loading,
+  setLoading,
+}: FormProps) {
+  const { push } = useRouter()
+  const { toast } = useToast()
+  return (
+    <>
       <BackButton href='/onboarding/1'>Back</BackButton>
       <p className='onboarding-step'>Step 2/5</p>
       <h1 className='onboarding'>Expertise (up to 3):</h1>
@@ -93,7 +136,7 @@ export default function OnboardingStep2() {
             handleSubmit({
               selectedExpertises,
               selectedIndustries,
-              userId: session?.user.id!,
+              userId: user.id!,
               toast,
               setLoading,
               push,
@@ -103,6 +146,6 @@ export default function OnboardingStep2() {
           Continue
         </ClientSubmitButton>
       </form>
-    </OnboardingSkeleton>
+    </>
   )
 }

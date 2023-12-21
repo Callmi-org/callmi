@@ -12,7 +12,7 @@ export default async function OnboardingStep4() {
   const session = await getServerSession(options)
 
   if (!session) redirect('/api/auth/signin')
-  if (session.user.onboarded) redirect(`/expert/${session.user.id}`)
+  if (session.user.onboarded) redirect(`/expert/${session.user.username}`)
 
   return (
     <OnboardingSkeleton step={4}>

@@ -8,19 +8,60 @@ import { useSession } from 'next-auth/react'
 import { ClientSubmitButton } from '@/components/form/client-submit-button'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Loading from '@/components/layout/loading'
 
 export default function OnboardingStep5() {
   // const session = await getServerSession(options)
-  const { data: session } = useSession({ required: true })
+  const { data: session, status } = useSession({ required: true })
   const { push } = useRouter()
   const [loading, setLoading] = useState(false)
   const [charityName, setCharityName] = useState('')
   const [charityUrl, setCharityUrl] = useState('')
 
-  if (session?.user.onboarded) push(`/expert/${session.user.id}`)
+  if (session?.user.onboarded) push(`/expert/${session.user.username}`)
 
+  const children =
+    status === 'loading' ? (
+      <Loading />
+    ) : (
+      <Form
+        user={session?.user}
+        loading={loading}
+        setLoading={setLoading}
+        charityName={charityName}
+        charityUrl={charityUrl}
+        setCharityName={setCharityName}
+        setCharityUrl={setCharityUrl}
+        push={push}
+      />
+    )
+
+  return <OnboardingSkeleton step={5}>{children}</OnboardingSkeleton>
+}
+
+type FormProps = {
+  user: User
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  push: (url: string) => void
+  setCharityName: React.Dispatch<React.SetStateAction<string>>
+  setCharityUrl: React.Dispatch<React.SetStateAction<string>>
+  loading: boolean
+  charityName: string
+  charityUrl: string
+}
+
+function Form({
+  user,
+  loading,
+  setLoading,
+  charityName,
+  charityUrl,
+  setCharityName,
+  setCharityUrl,
+  push,
+}: FormProps) {
   return (
-    <OnboardingSkeleton step={5}>
+    <>
       <BackButton href='/onboarding/4'>Back</BackButton>
       <p className='onboarding-step'>Step 5/5</p>
       <h1 className='onboarding'>Donating to a charity? (Optional)</h1>
@@ -51,11 +92,11 @@ export default function OnboardingStep5() {
 
         <ClientSubmitButton
           hasSkip
-          skipHref='/expert/123'
+          skipHref={`/expert/${user.username}`}
           loading={loading}
           onClick={() =>
             handleSubmit({
-              id: session?.user.id!,
+              id: user.id!,
               charityName,
               charityUrl,
               setLoading,
@@ -66,6 +107,6 @@ export default function OnboardingStep5() {
           Finish
         </ClientSubmitButton>
       </form>
-    </OnboardingSkeleton>
+    </>
   )
 }
