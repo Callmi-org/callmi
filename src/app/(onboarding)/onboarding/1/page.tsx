@@ -12,6 +12,8 @@ export default function OnboardingStep1() {
   const { data: session, status } = useSession({ required: true })
   if (session?.user.onboarded) redirect(`/expert/${session.user.username}`)
 
+  console.log({ session })
+
   const children =
     status === 'loading' ? <Loading /> : <Form user={session.user} />
 
