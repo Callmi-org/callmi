@@ -1,7 +1,6 @@
 import prisma, { convertEnumToText } from '@/utils/prisma'
-import { NextApiRequest } from 'next'
 export async function GET(
-  req: NextApiRequest,
+  req: Request,
   { params }: { params: { username: string } }
 ) {
   const { username } = params

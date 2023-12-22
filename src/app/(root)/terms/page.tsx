@@ -12,9 +12,9 @@ export default function Terms() {
         <h2 className='text-3xl font-medium'>1. Service Description</h2>
         <p>
           Callmi is a platform that enables professionals to book video calls
-          with the MENA region's most in-demand startup and scaleup experts. We
-          facilitate these connections by providing a secure and efficient
-          system for scheduling, communication, and payment.
+          with the MENA region&apos;s most in-demand startup and scaleup
+          experts. We facilitate these connections by providing a secure and
+          efficient system for scheduling, communication, and payment.
         </p>
 
         <h2 className='text-3xl font-medium'>
@@ -42,15 +42,15 @@ export default function Terms() {
         <p>
           Transaction Fees: We deduct a 5% bank transfer and credit card
           processing fee upon the withdrawal of earnings by the expert.
-          Additionally, clients are charged a 20% fee on top of the expert's fee
-          for each call. This structure ensures that the platform can continue
-          to provide quality services and support.
+          Additionally, clients are charged a 20% fee on top of the
+          expert&apos;s fee for each call. This structure ensures that the
+          platform can continue to provide quality services and support.
         </p>
         <p>
           Payment Processing: All payments are processed through Stripe. After a
           call is completed, the payment, minus any applicable fees, becomes
-          withdrawable from the expert's Callmi dashboard. Experts can withdraw
-          funds once they have accumulated at least $150 USD.
+          withdrawable from the expert&apos;s Callmi dashboard. Experts can
+          withdraw funds once they have accumulated at least $150 USD.
         </p>
 
         <h2 className='text-3xl font-medium'>4. Intellectual Property</h2>
@@ -58,14 +58,15 @@ export default function Terms() {
           Ownership and Rights: You acknowledge that any submission made in
           connection with the Session, including any chat, comment, audio,
           image, video, idea, intellectual property, feedback, review, photo,
-          text, post, element, or other communication ("Session Content"), will
-          be governed by these Terms. Callmi or its licensors own all right,
-          title, and interest in and to the Callmi Services, including all
-          software, ideas, processes, data, text, media, and other content
-          available on the Services ("Callmi Content"); Callmi's trademarks,
-          logos, and brand elements ("Marks"); and all other intellectual
-          property rights contained in the Services and/or comprising the Callmi
-          Content ("Callmi IP"). These are each protected under U.S. and
+          text, post, element, or other communication (&quot;Session
+          Content&quot;), will be governed by these Terms. Callmi or its
+          licensors own all right, title, and interest in and to the Callmi
+          Services, including all software, ideas, processes, data, text, media,
+          and other content available on the Services (&quot;Callmi
+          Content&quot;); Callmi&apos;s trademarks, logos, and brand elements
+          (&quot;Marks&quot;); and all other intellectual property rights
+          contained in the Services and/or comprising the Callmi Content
+          (&quot;Callmi IP&quot;). These are each protected under U.S. and
           international laws. You may not duplicate, copy, or reuse any portion
           of the HTML/CSS, JavaScript, visual design elements, code, or concepts
           without our prior express written consent.
@@ -96,7 +97,7 @@ export default function Terms() {
           you informally, each party agrees to resolve any claim, dispute, or
           controversy through binding arbitration. The specific rules and
           procedures for arbitration will be determined by the American
-          Arbitration Association ("JAMS") applicable rules.
+          Arbitration Association (&quot;JAMS&quot;) applicable rules.
         </p>
         <p>
           Class Action Waiver: Both parties agree that any arbitration will be
