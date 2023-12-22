@@ -10,9 +10,7 @@ import Loading from '@/components/layout/loading'
 
 export default function OnboardingStep1() {
   const { data: session, status } = useSession({ required: true })
-  if (session?.user.onboarded) redirect(`/expert/${session.user.username}`)
-
-  console.log({ session })
+  // if (session?.user.onboarded) redirect(`/expert/${session.user.username}`)
 
   const children =
     status === 'loading' ? <Loading /> : <Form user={session.user} />
@@ -28,7 +26,9 @@ function Form({ user }: FormProps) {
   return (
     <>
       <p className='onboarding-step'>Step 1/5</p>
-      <h1 className='onboarding'>Welcome To Callmi</h1>
+      <h1 className='onboarding'>
+        {user.onboarded ? 'Update your Callmi Details' : 'Welcome To Callmi'}
+      </h1>
       <form
         action={formAction}
         className='relative flex flex-col gap-4'

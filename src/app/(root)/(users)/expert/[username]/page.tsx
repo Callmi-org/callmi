@@ -2,34 +2,33 @@
 import BookingSidebar from '@/components/expert/booking-sidebar'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Top from './Top'
 import HowItWorks from './HowItWorks'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { profile } from '@/data/general'
+// import { profile } from '@/data/general'
 
 export default function UserPage() {
-  const { userId } = useParams()
-  // const { data: session } = useSession()
+  const { username } = useParams()
+  const { data: session } = useSession()
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
 
-  // const [profile, setProfile] = useState<User>()
+  const [profile, setProfile] = useState<User>()
 
-  // useEffect(() => {
-  //   async function fetchUser() {
-  //     const res = await fetch(`/api/users/${userId}`)
-  //     const data = await res.json()
-  //     console.log({ data })
-  //     setProfile(data)
-  //   }
+  useEffect(() => {
+    async function fetchUser() {
+      const res = await fetch(`/api/expert/${username}`)
+      const data = await res.json()
+      setProfile(data)
+    }
 
-  //   fetchUser()
-  // }, [userId])
+    fetchUser()
+  }, [username])
 
-  // if (!profile) {
-  //   return <div>Loading...</div>
-  // }
+  if (!profile) {
+    return <div>Loading...</div>
+  }
 
   return (
     <main className='min-h-screen px-4 pb-20 pt-8 md:px-12 2xl:pb-4'>
@@ -44,7 +43,7 @@ export default function UserPage() {
           profile={profile}
         />
       </div>
-      <BookButton userId={userId as string}>Book</BookButton>
+      <BookButton userId={username as string}>Book</BookButton>
     </main>
   )
 }
