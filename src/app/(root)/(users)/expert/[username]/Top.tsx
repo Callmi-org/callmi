@@ -105,14 +105,14 @@ export default function Top(profile: User) {
           <Gem className='h-8 w-8 stroke-[1.5px]' />
           <span className='font-semibold'>Expertise</span>
           <span className='mt-auto text-sm text-gray-600'>
-            {profile.expertise.join(', ')}
+            {profile?.expertise?.join(', ')}
           </span>
         </div>
         <div className='group flex min-h-[11rem] flex-col gap-3 rounded-xl bg-gray-100 p-6 '>
           <Building className='h-8 w-8 stroke-[1.5px]' />
           <span className='font-semibold'>Industry</span>
           <span className='mt-auto text-sm text-gray-600'>
-            {profile.industry.join(', ')}
+            {profile?.industry?.join(', ')}
           </span>
         </div>
       </div>
