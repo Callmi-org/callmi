@@ -11,9 +11,24 @@ import { useState } from 'react'
 
 export default function OnboardingStep4() {
   // const session = await getServerSession(options)
-  const { data: session } = useSession()
-  if (!session) redirect('/api/auth/signin')
-  const [availability, setAvailability] = useState([])
+  const { data: session, status } = useSession()
+  if (status !== 'loading' && !session) redirect('/api/auth/signin')
+  const [availabilities, setAvailabilities] = useState<Availability[]>(
+    daysOfWeek.map((day, idx) => ({
+      weekDay: idx,
+      enabled: false,
+      startTime: {
+        hour: 9,
+        minute: 0,
+        ampm: 'am',
+      },
+      endTime: {
+        hour: 5,
+        minute: 0,
+        ampm: 'pm',
+      },
+    }))
+  )
   // if (session.user.onboarded) redirect(`/expert/${session.user.username}`)
 
   return (
@@ -26,10 +41,12 @@ export default function OnboardingStep4() {
         className='flex flex-col justify-center gap-8'
       >
         <div className='flex flex-col gap-6'>
-          {daysOfWeek.map(day => (
+          {availabilities.map(availability => (
             <Availability
-              key={day}
-              dayOfWeek={day}
+              key={availability.weekDay}
+              dayOfWeek={daysOfWeek[availability.weekDay]}
+              availability={availability}
+              setAvailabilities={setAvailabilities}
             />
           ))}
         </div>

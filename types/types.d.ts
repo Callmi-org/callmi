@@ -23,21 +23,12 @@ type User = {
   }
 }
 
-type DayAvailability =
-  | {
-      available: true
-      start: {
-        dateTime: Date
-        timezone: string
-      }
-      end: {
-        dateTime: Date
-        timezone: string
-      }
-    }
-  | {
-      available: false
-    }
+type Availability = {
+  weekDay: number
+  enabled: boolean
+  startTime: Time
+  endTime: Time
+}
 
 type Time = {
   // hour is 1-12

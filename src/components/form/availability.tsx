@@ -5,11 +5,16 @@ import { Switch } from '@/components/ui/switch'
 
 type AvailabilityProps = {
   dayOfWeek: string
+  availability: Availability
+  setAvailabilities: Dispatch<SetStateAction<Availability[]>>
 }
 
-export default function Availability({ dayOfWeek }: AvailabilityProps) {
+export default function Availability({
+  dayOfWeek,
+  availability,
+  setAvailabilities,
+}: AvailabilityProps) {
   dayOfWeek = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1)
-  const [isAvailable, setIsAvailable] = useState(false)
   const [startTime, setStartTime] = useState<Time>({
     hour: 9,
     minute: 0,
@@ -21,25 +26,42 @@ export default function Availability({ dayOfWeek }: AvailabilityProps) {
     ampm: 'pm',
   })
 
+  const handleEnableChange = (checked: boolean) => {
+    setAvailabilities(prev => {
+      const newAvailabilities = [...prev]
+      newAvailabilities[availability.weekDay].enabled = checked
+      return newAvailabilities
+    })
+  }
+
   const handleTimeChange = (
     e: React.ChangeEvent<HTMLSelectElement>,
-    setTime: Dispatch<SetStateAction<Time>>
+    startOrEnd: 'startTime' | 'endTime'
   ) => {
     switch (e.target.name) {
       case 'hours':
-        setTime(prev => ({ ...prev, hour: +e.target.value }))
+        setAvailabilities(prev => {
+          const newAvailabilities = [...prev]
+          newAvailabilities[availability.weekDay][startOrEnd].hour =
+            +e.target.value
+          return newAvailabilities
+        })
         break
       case 'minutes':
-        setTime(prev => ({
-          ...prev,
-          minute: +e.target.value as Time['minute'],
-        }))
+        setAvailabilities(prev => {
+          const newAvailabilities = [...prev]
+          newAvailabilities[availability.weekDay][startOrEnd].minute = +e.target
+            .value as Time['minute']
+          return newAvailabilities
+        })
         break
       case 'ampm':
-        setTime(prev => ({
-          ...prev,
-          ampm: e.target.value as 'am' | 'pm',
-        }))
+        setAvailabilities(prev => {
+          const newAvailabilities = [...prev]
+          newAvailabilities[availability.weekDay][startOrEnd].ampm = e.target
+            .value as Time['ampm']
+          return newAvailabilities
+        })
         break
     }
   }
@@ -50,29 +72,29 @@ export default function Availability({ dayOfWeek }: AvailabilityProps) {
         <Switch
           name={`available-${dayOfWeek}`}
           className='toggle'
-          checked={isAvailable}
-          onCheckedChange={checked => setIsAvailable(checked)}
+          checked={availability.enabled}
+          onCheckedChange={handleEnableChange}
         />
         <h3 className='font-semibold md:text-lg'>{dayOfWeek}</h3>
       </div>
       <div className='flex items-center gap-1 md:gap-4'>
         <TimePicker
           time={startTime}
-          onChange={e => handleTimeChange(e, setStartTime)}
+          onChange={e => handleTimeChange(e, 'startTime')}
           name={dayOfWeek}
-          isAvailable={isAvailable}
+          isAvailable={availability.enabled}
         />
         <span
           className={cn(
             'h-[1px] w-2 bg-black',
-            isAvailable ? 'opacity-100' : 'opacity-50'
+            availability.enabled ? 'opacity-100' : 'opacity-50'
           )}
         ></span>
         <TimePicker
           time={endTime}
-          onChange={e => handleTimeChange(e, setEndTime)}
+          onChange={e => handleTimeChange(e, 'endTime')}
           name={dayOfWeek}
-          isAvailable={isAvailable}
+          isAvailable={availability.enabled}
         />
       </div>
     </div>
