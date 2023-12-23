@@ -21,7 +21,7 @@ export async function GET(
   // @ts-ignore
   result.expertise = result.expertise.map(el => convertEnumToText(el))
   // @ts-ignore
-  result.industry = result.industry.map(el => convertEnumToText(el)) as any
+  result.industry = result.industry.map(el => convertEnumToText(el))
 
   // res.json(result)
   return Response.json(result, { status: 200 })

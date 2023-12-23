@@ -1,6 +1,7 @@
 'use client'
 import Avatar from '@/components/general/avatar'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/use-toast'
 import {
   MapPin,
   HeartHandshake,
@@ -8,18 +9,21 @@ import {
   Gem,
   Building,
   LinkIcon,
+  Copy,
 } from 'lucide-react'
-import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export default function Top(profile: User) {
-  const [shareText, setShareText] = useState('Copy link to clipboard')
   const shareLink = `https://callmi.co${usePathname()}`
+  const { toast } = useToast()
 
   const copyLink = () => {
     navigator.clipboard.writeText(shareLink)
-    setShareText('Copied!')
+    toast({
+      title: `Copied ${profile.name.split(' ')[0]}'s profile link to clipboard`,
+      description: 'Share this link with your friends and colleagues',
+    })
   }
 
   return (
@@ -40,7 +44,7 @@ export default function Top(profile: User) {
           onClick={copyLink}
           variant='secondary'
         >
-          {shareText}
+          <Copy />
         </Button>
       </div>
       <div className='flex w-full items-stretch justify-between gap-4 border-b pb-8'>
@@ -65,7 +69,7 @@ export default function Top(profile: User) {
           <Button
             onClick={copyLink}
             variant='link'
-            className='hidden xl:flex'
+            className='hidden lg:flex'
           >
             <LinkIcon className='mr-1 h-4' />
             {shareLink}
@@ -74,11 +78,13 @@ export default function Top(profile: User) {
             onClick={copyLink}
             variant='link'
           >
-            {shareText}
+            <Copy />
           </Button>
         </div>
       </div>
-      <p className='flex-1  text-base text-gray-600'>{profile.bio}</p>
+      <p className='flex-1  whitespace-pre-wrap text-base text-gray-600'>
+        {profile.bio}
+      </p>
       <div className='grid w-full grid-cols-1 gap-8 md:grid-cols-3 2xl:max-w-[83.33%]'>
         {profile.charityName && profile.charityUrl && (
           <Link href={profile.charityUrl}>

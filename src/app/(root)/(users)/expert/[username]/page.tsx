@@ -1,17 +1,15 @@
 'use client'
 import BookingSidebar from '@/components/expert/booking-sidebar'
-import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Top from './Top'
 import HowItWorks from './HowItWorks'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-// import { profile } from '@/data/general'
+import Loading from '@/components/layout/loading'
 
 export default function UserPage() {
   const { username } = useParams()
-  const { data: session } = useSession()
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
 
   const [profile, setProfile] = useState<User>()
@@ -27,7 +25,11 @@ export default function UserPage() {
   }, [username])
 
   if (!profile) {
-    return <div>Loading...</div>
+    return (
+      <main className='flex flex-1 items-center justify-center'>
+        <Loading />
+      </main>
+    )
   }
 
   return (
