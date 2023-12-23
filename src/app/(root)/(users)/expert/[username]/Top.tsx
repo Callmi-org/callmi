@@ -57,7 +57,7 @@ export default function Top(profile: User) {
           <div className='flex flex-col gap-1'>
             <h1 className='text-2xl font-bold'>{profile.name}</h1>
             <h2 className='text-lg text-gray-500'>
-              {profile.position} {profile.company && ` at ${profile.company}}`}
+              {profile.position} {profile.company && ` at ${profile.company}`}
             </h2>
             <small className='flex items-center gap-1 text-gray-500'>
               <MapPin className='h-4 w-4' />
