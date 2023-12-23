@@ -20,7 +20,7 @@ export default function BookingForm({
 }: Props) {
   return (
     <div className='flex w-full flex-col gap-6'>
-      <div className='flex justify-between'>
+      <div className='flex justify-between gap-6'>
         <h1 className='text-2xl '>
           Book a call with{' '}
           <span className='whitespace-nowrap'>

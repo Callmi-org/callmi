@@ -18,8 +18,8 @@ export default function BookingSidebar({
   setSelectedDate,
 }: Props) {
   return (
-    <aside className='col-span-3 row-span-3 hidden sm:block xl:col-span-1 '>
-      <div className='left-0 top-24  rounded-3xl  border bg-white p-10 shadow-2xl'>
+    <aside className='relative col-span-3 row-span-3 hidden h-full sm:block xl:col-span-1 '>
+      <div className='sticky left-0 top-4  rounded-3xl  border bg-white p-10 shadow-2xl'>
         <BookingForm
           profile={profile}
           selectedDate={selectedDate}

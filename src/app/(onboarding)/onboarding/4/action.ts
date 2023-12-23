@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 
 export const formAction = async (data: FormData) => {
-  'use server'
   // Validate data
   const id = data.get('user-id')
   const availability = data.get('availability')

@@ -1,18 +1,20 @@
+'use client'
 import Availability from '@/components/form/availability'
 import { SubmitButton } from '@/components/form/submit-button'
 import { daysOfWeek } from '@/data/general'
 import { formAction } from './action'
 import OnboardingSkeleton from '../../onboarding-skeleton'
 import BackButton from '@/components/form/back-button'
-import { getServerSession } from 'next-auth/next'
-import options from '@/app/api/auth/[...nextauth]/options'
 import { redirect } from 'next/navigation'
+import { useSession } from 'next-auth/react'
+import { useState } from 'react'
 
-export default async function OnboardingStep4() {
-  const session = await getServerSession(options)
-
+export default function OnboardingStep4() {
+  // const session = await getServerSession(options)
+  const { data: session } = useSession()
   if (!session) redirect('/api/auth/signin')
-  if (session.user.onboarded) redirect(`/expert/${session.user.username}`)
+  const [availability, setAvailability] = useState([])
+  // if (session.user.onboarded) redirect(`/expert/${session.user.username}`)
 
   return (
     <OnboardingSkeleton step={4}>
