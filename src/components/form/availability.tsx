@@ -15,16 +15,6 @@ export default function Availability({
   setAvailabilities,
 }: AvailabilityProps) {
   dayOfWeek = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1)
-  const [startTime, setStartTime] = useState<Time>({
-    hour: 9,
-    minute: 0,
-    ampm: 'am',
-  })
-  const [endTime, setEndTime] = useState<Time>({
-    hour: 5,
-    minute: 0,
-    ampm: 'pm',
-  })
 
   const handleEnableChange = (checked: boolean) => {
     setAvailabilities(prev => {
@@ -79,7 +69,7 @@ export default function Availability({
       </div>
       <div className='flex items-center gap-1 md:gap-4'>
         <TimePicker
-          time={startTime}
+          time={availability.startTime}
           onChange={e => handleTimeChange(e, 'startTime')}
           name={dayOfWeek}
           isAvailable={availability.enabled}
@@ -91,7 +81,7 @@ export default function Availability({
           )}
         ></span>
         <TimePicker
-          time={endTime}
+          time={availability.endTime}
           onChange={e => handleTimeChange(e, 'endTime')}
           name={dayOfWeek}
           isAvailable={availability.enabled}
