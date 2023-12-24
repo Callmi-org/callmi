@@ -19,7 +19,7 @@ export default function Availability({
   const handleEnableChange = (checked: boolean) => {
     setAvailabilities(prev => {
       const newAvailabilities = [...prev]
-      newAvailabilities[availability.weekDay].enabled = checked
+      newAvailabilities[availability.dayOfWeek].enabled = checked
       return newAvailabilities
     })
   }
@@ -32,7 +32,7 @@ export default function Availability({
       case 'hours':
         setAvailabilities(prev => {
           const newAvailabilities = [...prev]
-          newAvailabilities[availability.weekDay][startOrEnd].hour =
+          newAvailabilities[availability.dayOfWeek][startOrEnd].hour =
             +e.target.value
           return newAvailabilities
         })
@@ -40,16 +40,8 @@ export default function Availability({
       case 'minutes':
         setAvailabilities(prev => {
           const newAvailabilities = [...prev]
-          newAvailabilities[availability.weekDay][startOrEnd].minute = +e.target
-            .value as Time['minute']
-          return newAvailabilities
-        })
-        break
-      case 'ampm':
-        setAvailabilities(prev => {
-          const newAvailabilities = [...prev]
-          newAvailabilities[availability.weekDay][startOrEnd].ampm = e.target
-            .value as Time['ampm']
+          newAvailabilities[availability.dayOfWeek][startOrEnd].minute = +e
+            .target.value as Time['minute']
           return newAvailabilities
         })
         break
@@ -71,7 +63,6 @@ export default function Availability({
         <TimePicker
           time={availability.startTime}
           onChange={e => handleTimeChange(e, 'startTime')}
-          name={dayOfWeek}
           isAvailable={availability.enabled}
         />
         <span
@@ -83,7 +74,6 @@ export default function Availability({
         <TimePicker
           time={availability.endTime}
           onChange={e => handleTimeChange(e, 'endTime')}
-          name={dayOfWeek}
           isAvailable={availability.enabled}
         />
       </div>
@@ -93,23 +83,23 @@ export default function Availability({
 
 type TimePickerProps = {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
-  name: string
   time: Time
   isAvailable: boolean
 }
 
-function TimePicker({ onChange, name, time, isAvailable }: TimePickerProps) {
+function TimePicker({ onChange, time, isAvailable }: TimePickerProps) {
   return (
     <div className={cn(isAvailable ? '' : 'opacity-50')}>
-      <div className='flex items-center gap-0.5 rounded-full border bg-white px-2 py-2 text-sm md:px-4'>
+      <div className='grid grid-cols-3 rounded-xl border bg-white px-3 py-2 text-sm md:px-4'>
         <select
           name='hours'
           className='appearance-none bg-transparent outline-none'
           onChange={onChange}
           value={time.hour}
+          title='Hours'
           disabled={!isAvailable}
         >
-          {Array.from(Array(12).keys()).map(i => (
+          {Array.from(Array(24).keys()).map(i => (
             <option
               key={i}
               value={i + 1}
@@ -118,13 +108,14 @@ function TimePicker({ onChange, name, time, isAvailable }: TimePickerProps) {
             </option>
           ))}
         </select>
-        <span>:</span>
+        <span className='mx-auto'>:</span>
         <select
           name='minutes'
           className='appearance-none bg-transparent outline-none'
           value={time.minute}
           onChange={onChange}
           disabled={!isAvailable}
+          title='Minutes'
         >
           <option
             selected
@@ -135,16 +126,6 @@ function TimePicker({ onChange, name, time, isAvailable }: TimePickerProps) {
           <option value={15}>15</option>
           <option value={30}>30</option>
           <option value={45}>45</option>
-        </select>
-        <select
-          name='ampm'
-          className='appearance-none bg-transparent outline-none'
-          value={time.ampm}
-          onChange={onChange}
-          disabled={!isAvailable}
-        >
-          <option value='am'>AM</option>
-          <option value='pm'>PM</option>
         </select>
       </div>
     </div>

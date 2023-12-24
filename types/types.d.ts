@@ -24,15 +24,14 @@ type User = {
 }
 
 type Availability = {
-  weekDay: number
+  dayOfWeek: number
   enabled: boolean
   startTime: Time
   endTime: Time
 }
 
 type Time = {
-  // hour is 1-12
+  // hour is 0-23
   hour: number
   minute: 0 | 15 | 30 | 45
-  ampm: 'am' | 'pm'
 }
