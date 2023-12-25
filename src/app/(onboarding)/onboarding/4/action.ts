@@ -2,53 +2,56 @@
 
 import options from '@/app/api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation'
-import util from 'util'
-import dayjs from 'dayjs'
-import prisma from '@/utils/prisma'
-import { UserAvailability } from '@prisma/client'
+import prisma, {
+  convertTimeObjectToString,
+  getTimeInMinutes,
+} from '@/utils/prisma'
 
-export const formAction = async (data: Availability[]) => {
-  // Validate data
-
-  const inspect = util.inspect(data)
-  console.log(inspect)
-  // if (!id || !availability) return redirect('/onboarding/4')
-
+export const formAction = async (data: Availability[], id: string) => {
   const session = await getServerSession(options)
+  if (!id || !data)
+    return { error: "Missing 'id' or 'data' in request body", status: 400 }
 
-  // TODO
-  const availability = data
-    .filter(day => day.enabled)
-    .map(day => {
-      const { startTime: start, endTime: end } = day
-      const startTime = dayjs()
-        .hour(start.hour)
-        .minute(start.minute)
-        .format('HH:mm')
-      const endTime = dayjs().hour(end.hour).minute(end.minute).format('HH:mm')
+  if (!session) return { error: 'Unauthorized', status: 403 }
 
-      return {
-        dayOfWeek: day.dayOfWeek,
-        startTime,
-        endTime,
-        userId: session?.user.id,
-      }
+  if (session?.user.id !== id) return { error: 'Unauthorized', status: 403 }
+
+  let allValid = true
+
+  if (data.length) {
+    allValid = data.some(day => {
+      const startInMinutes = getTimeInMinutes(day.startTime)
+      const endInMinutes = getTimeInMinutes(day.endTime)
+
+      return startInMinutes < endInMinutes
     })
+  }
 
-  // Update user
+  console.log({ allValid })
+
+  if (!allValid)
+    return {
+      error: 'Invalid time range. Ensure start time comes before end time.',
+      status: 400,
+    }
+  // TODO
+  const availability = data.map(day => {
+    const { startTime: start, endTime: end } = day
+    const startTime = convertTimeObjectToString(start)
+    const endTime = convertTimeObjectToString(end)
+
+    return {
+      dayOfWeek: day.dayOfWeek,
+      startTime,
+      endTime,
+      userId: session?.user.id!,
+    }
+  })
+
   try {
-    // await prisma.userAvailability.createMany({
-    //   data: availability as any,
-    // })
-
-    // If user availabilities exist, update them, otherwise create them
-
     const userAvailabilities = await prisma.userAvailability.findMany({
       where: { userId: session?.user.id },
     })
-
-    console.log({ userAvailabilities })
 
     if (userAvailabilities.length) {
       await prisma.userAvailability.deleteMany({
@@ -57,13 +60,12 @@ export const formAction = async (data: Availability[]) => {
     }
 
     await prisma.userAvailability.createMany({
-      data: availability as any,
+      data: availability,
     })
+
+    return { status: 200 }
   } catch (error) {
     console.error(error)
+    return { error: 'Something went wrong on our end', status: 500 }
   }
-
-  return
-  // Redirect to next step
-  // redirect('/onboarding/5')
 }

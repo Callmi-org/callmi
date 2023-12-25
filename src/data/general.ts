@@ -141,3 +141,18 @@ export const profile: User = {
     },
   },
 }
+
+export const defaultAvailabilities: Availability[] = daysOfWeek.map(
+  (_, idx) => ({
+    dayOfWeek: idx,
+    enabled: false,
+    startTime: {
+      hour: 9,
+      minute: 0,
+    },
+    endTime: {
+      hour: 17,
+      minute: 0,
+    },
+  })
+)

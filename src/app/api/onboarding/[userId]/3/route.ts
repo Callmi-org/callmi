@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import { getServerSession } from 'next-auth'
-import prisma, { convertTextToEnum } from '@/utils/prisma'
+import prisma from '@/utils/prisma'
 import options from '../../../auth/[...nextauth]/options'
 export async function PUT(
   req: NextRequest,
