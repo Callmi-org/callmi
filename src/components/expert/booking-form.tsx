@@ -11,13 +11,21 @@ type Props = {
   profile: User
   selectedDate: Date | undefined
   setSelectedDate: (date: Date | undefined) => void
+  availability: Availability[]
 }
 
 export default function BookingForm({
   profile,
   selectedDate,
   setSelectedDate,
+  availability,
 }: Props) {
+  const disabledDays = (function () {
+    const allDays = [0, 1, 2, 3, 4, 5, 6]
+    const availableDays = availability.map(a => a.dayOfWeek)
+    return allDays.filter(d => !availableDays.includes(d))
+  })()
+
   return (
     <div className='flex w-full flex-col gap-6'>
       <div className='flex justify-between gap-6'>
@@ -54,19 +62,22 @@ export default function BookingForm({
       />
 
       <Calendar
-        disabled={{ before: new Date() }}
+        fromDate={new Date()}
+        disabled={{ dayOfWeek: disabledDays }}
         mode='single'
         selected={selectedDate}
         onSelect={setSelectedDate}
       />
 
-      <SelectWithLabel
-        label='Meeting time'
-        name='time'
-        options={['9:00 AM', '10:00 AM', '2:00 PM', '3:00 PM', '5:00 PM']}
-        required
-        placeholder='Select a time'
-      />
+      {selectedDate && (
+        <SelectWithLabel
+          label='Meeting time'
+          name='time'
+          options={['9:00 AM', '10:00 AM', '2:00 PM', '3:00 PM', '5:00 PM']}
+          required
+          placeholder='Select a time'
+        />
+      )}
       <Link href={`/expert/${profile.id}/book/success`}>
         <Button className='relative flex w-full items-center justify-center gap-2 bg-brand'>
           Proceed to checkout ({formatCurrency(profile.costPerHour)})

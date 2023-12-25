@@ -18,9 +18,7 @@ type User = {
   company?: string
   charityName?: string
   charityUrl?: string
-  availability: {
-    [key: DayOfWeek]: DayAvailability
-  }
+  availability: Availability[]
 }
 
 type Availability = {

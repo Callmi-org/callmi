@@ -28,6 +28,7 @@ module.exports = {
       colors: {
         // brand: '#fe494b',
         brand: '#F72533',
+        'brand-light': '#FEE9EB',
         highlight: '#CDFF99',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

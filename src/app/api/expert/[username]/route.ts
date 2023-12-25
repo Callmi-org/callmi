@@ -10,6 +10,9 @@ export async function GET(
 
   const result = await prisma.user.findUnique({
     where: { username },
+    include: {
+      availability: true,
+    },
   })
 
   console.log({ result })

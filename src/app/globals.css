@@ -95,8 +95,12 @@ body {
   @apply w-full justify-between;
 }
 
-.rdp-button {
-  @apply rounded-full;
+.rdp-button:enabled {
+  @apply bg-brand-light rounded-full;
+}
+
+.rdp-button[aria-selected|='true'] {
+  @apply bg-brand;
 }
 
 h1 {

@@ -65,7 +65,6 @@ function Form({ availabilities, setAvailabilities, user }: FormProps) {
       if (res.error) {
         throw new Error(res.error)
       }
-      console.log('success')
     } catch (error) {
       const { message } = error as Error
       console.log(error)
@@ -74,7 +73,9 @@ function Form({ availabilities, setAvailabilities, user }: FormProps) {
         description: message,
         variant: 'destructive',
       })
+      return
     }
+    redirect('/onboarding/5')
   }
   return (
     <>

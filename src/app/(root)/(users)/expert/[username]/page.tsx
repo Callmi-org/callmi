@@ -10,7 +10,7 @@ import Loading from '@/components/layout/loading'
 
 export default function UserPage() {
   const { username } = useParams()
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>()
 
   const [profile, setProfile] = useState<User>()
   const [error, setError] = useState('')
@@ -23,6 +23,8 @@ export default function UserPage() {
         setError(data.message)
         return
       }
+
+      console.log({ data })
       setProfile(data)
     }
 
@@ -69,6 +71,7 @@ export default function UserPage() {
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
           profile={profile}
+          availability={profile.availability}
         />
       </div>
       <BookButton userId={username as string}>Book</BookButton>
