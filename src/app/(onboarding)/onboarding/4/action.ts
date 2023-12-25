@@ -19,15 +19,13 @@ export const formAction = async (data: Availability[], id: string) => {
   let allValid = true
 
   if (data.length) {
-    allValid = data.some(day => {
+    allValid = data.every(day => {
       const startInMinutes = getTimeInMinutes(day.startTime)
       const endInMinutes = getTimeInMinutes(day.endTime)
 
       return startInMinutes < endInMinutes
     })
   }
-
-  console.log({ allValid })
 
   if (!allValid)
     return {
