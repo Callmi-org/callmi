@@ -61,6 +61,11 @@ export const formAction = async (data: Availability[], id: string) => {
       data: availability,
     })
 
+    await prisma.user.update({
+      where: { id: session?.user.id },
+      data: { onboarded: true },
+    })
+
     return { status: 200 }
   } catch (error) {
     console.error(error)

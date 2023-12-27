@@ -9,7 +9,7 @@ type Props = {
 
 export default function LandingButton({ children, className }: Props) {
   return (
-    <Link href='/waitlist'>
+    <Link href='/onboarding/1'>
       <Button className={cn('bg-brand font-normal text-white', className)}>
         {children}
       </Button>
