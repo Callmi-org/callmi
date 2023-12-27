@@ -28,7 +28,7 @@ export default function OnboardingStep4() {
     }
 
     getAvailabilities()
-  }, [status])
+  }, [status, session?.user.id])
 
   // if (session.user.onboarded) redirect(`/expert/${session.user.username}`)
 

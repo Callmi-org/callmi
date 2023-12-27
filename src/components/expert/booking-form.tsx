@@ -13,6 +13,7 @@ import { UserAvailability } from '@prisma/client'
 import SelectDuration from '../form/select-duration'
 import { useState } from 'react'
 import SelectTimeAndTimezone from '../form/select-time-and-timezone'
+import { is } from 'date-fns/locale'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -51,13 +52,14 @@ export default function BookingForm({
 
   function getAvailableTimes(date?: UserAvailability) {
     if (!date) return []
-    let { dayOfWeek, startTime, endTime } = date
-    const day = dayjs().day(dayOfWeek)
+    let { startTime, endTime } = date
 
     const startTimeObject = convertTimeStringToObject(startTime)
     const endTimeObject = convertTimeStringToObject(endTime)
 
-    if (profile.timezone !== selectedTimezone) {
+    const isSameTimezone = profile.timezone === selectedTimezone
+
+    if (!isSameTimezone) {
       const timezoneDifference =
         dayjs().tz(selectedTimezone).utcOffset() -
         dayjs().tz(profile.timezone).utcOffset()
@@ -69,13 +71,6 @@ export default function BookingForm({
 
       console.log({ startTime, endTime, timezoneDifference })
     }
-    // console.log({
-    //   day,
-    //   startTimeObject,
-    //   endTimeObject,
-    //   selectedTimezone,
-    //   profile,
-    // })
 
     const availableTimes = []
 
