@@ -84,11 +84,12 @@ model UserAvailability {
 }
 
 model Meeting {
-  id          String   @id @default(cuid())
-  clientEmail String
-  clientName  String
-  duration    Int
-  date        DateTime
+  id             String   @id @default(cuid())
+  clientEmail    String
+  clientName     String
+  duration       Int
+  date           DateTime
+  clientTimezone String
 
   user   User   @relation(fields: [userId], references: [id])
   userId String

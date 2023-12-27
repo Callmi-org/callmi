@@ -12,7 +12,7 @@ export default function UserPage() {
   const { username } = useParams()
   const [selectedDate, setSelectedDate] = useState<Date | undefined>()
 
-  const [profile, setProfile] = useState<User>()
+  const [profile, setProfile] = useState<UserAPIResponse>()
   const [error, setError] = useState('')
 
   useEffect(() => {

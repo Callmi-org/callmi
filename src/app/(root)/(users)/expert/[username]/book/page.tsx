@@ -9,7 +9,7 @@ export default function Book() {
   const { username } = useParams()
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
 
-  const [profile, setProfile] = useState<User>()
+  const [profile, setProfile] = useState<UserAPIResponse>()
   const [error, setError] = useState('')
 
   useEffect(() => {
@@ -59,6 +59,7 @@ export default function Book() {
     <main className='min-h-screen px-4  py-8 md:px-12 2xl:pb-4'>
       <div className='mx-auto max-w-md'>
         <BookingForm
+          availability={profile.availability}
           profile={profile}
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}

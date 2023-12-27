@@ -1,10 +1,11 @@
+import { UserAvailability } from '@prisma/client'
 import BookingForm from './booking-form'
 
 type Props = {
-  profile: User
+  profile: UserAPIResponse
   selectedDate: Date | undefined
   setSelectedDate: (date: Date | undefined) => void
-  availability: Availability[]
+  availability: UserAvailability[]
 }
 
 export default function BookingSidebar({

@@ -18,7 +18,7 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 
 type Props = {
-  profile: User
+  profile: UserAPIResponse
   selectedDate: Date | undefined
   setSelectedDate: (date: Date | undefined) => void
   availability: UserAvailability[]
