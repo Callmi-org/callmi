@@ -46,7 +46,7 @@ function Calendar({
         day_selected:
           'bg-brand text-gray-50 hover:bg-brand hover:text-gray-50 focus:bg-brand focus:text-gray-50 dark:bg-gray-50 dark:text-brand dark:hover:bg-gray-50 dark:hover:text-brand dark:focus:bg-gray-50 dark:focus:text-brand',
         day_today:
-          'bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-50',
+          'bg-gray-200 border-brand border rounded-[100%] text-gray-900 dark:bg-gray-800 dark:text-gray-50', // for some reason rounded full not working here
         day_outside:
           'day-outside text-gray-300 aria-selected:bg-gray-100/50 aria-selected:text-gray-500 dark:text-gray-400 dark:aria-selected:bg-gray-800/50 dark:aria-selected:text-gray-400',
         day_disabled: 'text-gray-400 bg-white dark:text-gray-400',
