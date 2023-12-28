@@ -18,6 +18,7 @@ export default function InputWithLabel({
   required,
   isCurrency,
   min,
+  max,
 }: Props) {
   return (
     <div className='relative flex w-full flex-col gap-1'>
@@ -33,6 +34,7 @@ export default function InputWithLabel({
         required={required}
         isCurrency={isCurrency}
         min={min}
+        max={max}
       />
     </div>
   )

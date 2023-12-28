@@ -12,3 +12,12 @@ export function formatCurrency(amount: number) {
     maximumFractionDigits: 0,
   }).format(amount)
 }
+
+export function normalizeUrl(url: string) {
+  try {
+    const urlObj = new URL(url)
+    return urlObj.href
+  } catch (error) {
+    return `https://${url}`
+  }
+}

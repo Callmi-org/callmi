@@ -16,6 +16,8 @@ export default function TextareaWithLabel({
   disabled,
   required,
   labelAlt,
+  minLength,
+  maxLength,
 }: Props) {
   return (
     <div className='relative flex w-full flex-col gap-1'>
@@ -26,7 +28,8 @@ export default function TextareaWithLabel({
         placeholder={placeholder}
         onChange={onChange}
         className='textarea textarea-bordered min-h-[15rem] resize-none rounded-xl'
-        minLength={20}
+        minLength={minLength}
+        maxLength={maxLength}
         defaultValue={defaultValue}
         disabled={disabled}
         required={required}

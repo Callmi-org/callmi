@@ -88,7 +88,7 @@ export default function BookingForm({
       }
     }
 
-    // console.log({ day, startTimeObject, endTimeObject, availableTimes })
+    // TODO: Remove times that are already booked, or conditionally add them to the list above
 
     return availableTimes.length ? availableTimes : []
   }

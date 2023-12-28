@@ -1,4 +1,5 @@
 import prisma from '@/utils/prisma'
+import { normalizeUrl } from '@/utils/utils'
 
 type HandleSubmitProps = {
   id: string
@@ -30,7 +31,7 @@ export default async function handleSubmit({
     },
     body: JSON.stringify({
       charityName,
-      charityUrl,
+      charityUrl: normalizeUrl(charityUrl),
     }),
   })
 

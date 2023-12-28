@@ -6,19 +6,23 @@ import InputWithLabel from '@/components/form/input-with-label'
 import handleSubmit from './handlers'
 import { useSession } from 'next-auth/react'
 import { ClientSubmitButton } from '@/components/form/client-submit-button'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Loading from '@/components/layout/loading'
 
 export default function OnboardingStep5() {
   // const session = await getServerSession(options)
-  const { data: session, status } = useSession({ required: true })
+  const { data: session, status, update } = useSession({ required: true })
   const { push } = useRouter()
   const [loading, setLoading] = useState(false)
   const [charityName, setCharityName] = useState('')
   const [charityUrl, setCharityUrl] = useState('')
 
-  if (session?.user.onboarded) push(`/expert/${session.user.username}`)
+  // if (session?.user.onboarded) push(`/expert/${session.user.username}`)
+
+  useEffect(() => {
+    update()
+  }, [])
 
   const children =
     status === 'loading' ? (
