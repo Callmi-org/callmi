@@ -10,6 +10,11 @@ const prisma = new PrismaClient()
 
 const options: AuthOptions = {
   adapter: PrismaAdapter(prisma),
+  theme: {
+    brandColor: '#fe494b',
+    colorScheme: 'light',
+    logo: '/logo.png',
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,

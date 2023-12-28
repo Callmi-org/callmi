@@ -13,7 +13,6 @@ import { UserAvailability } from '@prisma/client'
 import SelectDuration from '../form/select-duration'
 import { useState } from 'react'
 import SelectTimeAndTimezone from '../form/select-time-and-timezone'
-import { is } from 'date-fns/locale'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -32,9 +31,11 @@ export default function BookingForm({
   availability,
 }: Props) {
   dayjs.tz.setDefault(profile.timezone)
+
+  const clientCostPerHour = profile.costPerHour * 1.2
   const [selectedDuration, setSelectedDuration] = useState<[string, string]>([
     '60',
-    `60 minutes - $${profile.costPerHour}`,
+    `60 minutes - $${clientCostPerHour}`,
   ])
   const [selectedTimezone, setSelectedTimezone] = useState<string>(
     Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -102,7 +103,7 @@ export default function BookingForm({
           </span>
         </h1>
         <h2 className='text-2xl font-semibold'>
-          {formatCurrency(profile.costPerHour)}
+          {formatCurrency(clientCostPerHour)}
           <span className='text-sm font-medium text-gray-600'>/60min</span>
         </h2>
       </div>
@@ -120,8 +121,8 @@ export default function BookingForm({
         label='Call duration'
         name='duration'
         options={[
-          ['30', `30 minutes - $${profile.costPerHour / 2}`],
-          ['60', `60 minutes - $${profile.costPerHour}`],
+          ['30', `30 minutes - $${clientCostPerHour / 2}`],
+          ['60', `60 minutes - $${clientCostPerHour}`],
         ]}
         required
         value={selectedDuration}
@@ -151,7 +152,7 @@ export default function BookingForm({
       )}
       <Link href={`/expert/${profile.id}/book/success`}>
         <Button className='relative flex w-full items-center justify-center gap-2 bg-brand'>
-          Proceed to checkout ({formatCurrency(profile.costPerHour)})
+          Proceed to checkout ({formatCurrency(clientCostPerHour)})
           <ArrowRight className='absolute right-4 hidden xl:block' />
         </Button>
       </Link>
