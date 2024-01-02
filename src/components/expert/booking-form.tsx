@@ -1,18 +1,22 @@
-'use client'
 import { formatCurrency } from '@/utils/utils'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import InputWithLabel from '../form/input-with-label'
+import InputWithLabel from '../onboarding-form/input-with-label'
 import { Calendar } from '../ui/calendar'
-import Link from 'next/link'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
-import { convertTimeStringToObject } from '@/utils/prisma'
 import { UserAvailability } from '@prisma/client'
-import SelectDuration from '../form/select-duration'
+import SelectDuration from './select-duration'
 import { useState } from 'react'
-import SelectTimeAndTimezone from '../form/select-time-and-timezone'
+import SelectTimeAndTimezone from './select-time-and-timezone'
+import formAction from '@/app/(root)/(users)/expert/[username]/book/action'
+import { useToast } from '../ui/use-toast'
+import { redirect } from 'next/navigation'
+import {
+  constructUTCDateFromDateAndTime,
+  getAvailableTimes,
+} from '@/utils/booking'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -22,6 +26,12 @@ type Props = {
   selectedDate: Date | undefined
   setSelectedDate: (date: Date | undefined) => void
   availability: UserAvailability[]
+}
+
+export type SelectedTime = {
+  utc: string
+  expert: string
+  client: string
 }
 
 export default function BookingForm({
@@ -40,6 +50,15 @@ export default function BookingForm({
   const [selectedTimezone, setSelectedTimezone] = useState<string>(
     Intl.DateTimeFormat().resolvedOptions().timeZone
   )
+  const [selectedTime, setSelectedTime] = useState<SelectedTime>({
+    utc: '',
+    expert: '',
+    client: '',
+  })
+
+  console.log({ selectedTime })
+
+  const { toast } = useToast()
 
   const disabledDays = (function () {
     const allDays = [0, 1, 2, 3, 4, 5, 6]
@@ -51,50 +70,34 @@ export default function BookingForm({
     a => a.dayOfWeek === selectedDate?.getDay()
   )
 
-  function getAvailableTimes(date?: UserAvailability) {
-    if (!date) return []
-    let { startTime, endTime } = date
+  const clientAvailablesTimes = getAvailableTimes({
+    selectedDateAvailability,
+    selectedDuration,
+    selectedTimezone,
+    profile,
+  })
 
-    const startTimeObject = convertTimeStringToObject(startTime)
-    const endTimeObject = convertTimeStringToObject(endTime)
-
-    const isSameTimezone = profile.timezone === selectedTimezone
-
-    if (!isSameTimezone) {
-      const timezoneDifference =
-        dayjs().tz(selectedTimezone).utcOffset() -
-        dayjs().tz(profile.timezone).utcOffset()
-
-      startTimeObject.hour += timezoneDifference / 60
-      // startTimeObject.minute += timezoneDifference % 60
-      endTimeObject.hour += timezoneDifference / 60
-      // endTimeObject.minute += timezoneDifference % 60
-
-      console.log({ startTime, endTime, timezoneDifference })
+  function clientAction(formData: FormData) {
+    try {
+      if (!selectedDate) throw new Error('Please select a date')
+      const res = formAction(formData, selectedDate, profile, selectedTime)
+      console.log({ res })
+    } catch (error) {
+      const { message } = error as Error
+      toast({
+        title: 'Error',
+        description: message,
+        variant: 'destructive',
+      })
+      return
     }
-
-    const availableTimes = []
-
-    if (selectedDuration[0] === '60') {
-      for (let i = startTimeObject.hour; i < endTimeObject.hour; i++) {
-        availableTimes.push(`${i}:00`)
-      }
-    }
-
-    if (selectedDuration[0] === '30') {
-      for (let i = startTimeObject.hour; i < endTimeObject.hour; i++) {
-        availableTimes.push(`${i}:00`)
-        availableTimes.push(`${i}:30`)
-      }
-    }
-
-    // TODO: Remove times that are already booked, or conditionally add them to the list above
-
-    return availableTimes.length ? availableTimes : []
+    // redirect(`/expert/${profile.username}/book/success`)
   }
-
   return (
-    <div className='flex w-full flex-col gap-6'>
+    <form
+      action={clientAction}
+      className='flex w-full flex-col gap-6'
+    >
       <div className='flex justify-between gap-6'>
         <h1 className='text-2xl '>
           Book a call with{' '}
@@ -112,6 +115,7 @@ export default function BookingForm({
       </small>
       <InputWithLabel
         label='Email'
+        name='clientEmail'
         placeholder='Please enter your email here'
         type='email'
         required
@@ -119,14 +123,14 @@ export default function BookingForm({
       />
       <SelectDuration
         label='Call duration'
-        name='duration'
+        name='callDuration'
         options={[
           ['30', `30 minutes - $${clientCostPerHour / 2}`],
           ['60', `60 minutes - $${clientCostPerHour}`],
         ]}
         required
         value={selectedDuration}
-        onChange={value => {
+        onChange={(value: string) => {
           setSelectedDuration([value.split(' ')[0], value])
         }}
       />
@@ -142,20 +146,30 @@ export default function BookingForm({
       {selectedDate && (
         <SelectTimeAndTimezone
           label='Meeting time'
-          name='time'
-          options={getAvailableTimes(selectedDateAvailability)}
+          name='callTime'
+          options={clientAvailablesTimes}
           required
           placeholder='Select a time'
           selectedTimezone={selectedTimezone}
           setSelectedTimezone={setSelectedTimezone}
+          onChange={(value: string) => {
+            const utcTime = constructUTCDateFromDateAndTime(selectedDate, value)
+            setSelectedTime({
+              utc: utcTime.toISOString(),
+              expert: utcTime.tz(profile.timezone).format(),
+              client: utcTime.tz(selectedTimezone).format(),
+            })
+          }}
         />
       )}
-      <Link href={`/expert/${profile.id}/book/success`}>
-        <Button className='relative flex w-full items-center justify-center gap-2 bg-brand'>
-          Proceed to checkout ({formatCurrency(clientCostPerHour)})
-          <ArrowRight className='absolute right-4 hidden xl:block' />
-        </Button>
-      </Link>
-    </div>
+      <Button
+        type='submit'
+        className='relative flex w-full items-center justify-center gap-2 bg-brand'
+      >
+        Proceed to checkout (
+        {formatCurrency((clientCostPerHour * +selectedDuration[0]) / 60)})
+        <ArrowRight className='absolute right-4 hidden xl:block' />
+      </Button>
+    </form>
   )
 }

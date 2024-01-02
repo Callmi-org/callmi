@@ -1,13 +1,13 @@
 'use client'
 
-import BackButton from '@/components/form/back-button'
+import BackButton from '@/components/onboarding-form/back-button'
 import OnboardingSkeleton from '../../onboarding-skeleton'
-import InputWithLabel from '@/components/form/input-with-label'
+import InputWithLabel from '@/components/onboarding-form/input-with-label'
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 import { redirect } from 'next/navigation'
 import Loading from '@/components/layout/loading'
-import { SubmitButton } from '@/components/form/submit-button'
+import { SubmitButton } from '@/components/onboarding-form/submit-button'
 import { formAction } from './action'
 import { toast } from '@/components/ui/use-toast'
 

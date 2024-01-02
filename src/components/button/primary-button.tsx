@@ -2,7 +2,7 @@
 
 import { cn } from '@/utils/utils'
 import { motion } from 'framer-motion'
-import { Wrapper } from '../form/wrap-if-href'
+import { Wrapper } from '../onboarding-form/wrap-if-href'
 
 type Props = React.ComponentPropsWithoutRef<'button'> & {
   href?: string

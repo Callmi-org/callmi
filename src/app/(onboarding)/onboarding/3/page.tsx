@@ -3,14 +3,14 @@
 import { useSession } from 'next-auth/react'
 import { redirect, useRouter } from 'next/navigation'
 import OnboardingSkeleton from '../../onboarding-skeleton'
-import BackButton from '@/components/form/back-button'
-import InputWithLabel from '@/components/form/input-with-label'
-import TextareaWithLabel from '@/components/form/textarea-with-label'
+import BackButton from '@/components/onboarding-form/back-button'
+import InputWithLabel from '@/components/onboarding-form/input-with-label'
+import TextareaWithLabel from '@/components/onboarding-form/textarea-with-label'
 import { useState } from 'react'
 import { formatCurrency } from '@/utils/utils'
 import Loading from '@/components/layout/loading'
 import formAction from './action'
-import { SubmitButton } from '@/components/form/submit-button'
+import { SubmitButton } from '@/components/onboarding-form/submit-button'
 import { toast } from '@/components/ui/use-toast'
 
 export default function OnboardingStep3() {

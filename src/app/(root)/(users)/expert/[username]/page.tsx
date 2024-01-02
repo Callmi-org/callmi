@@ -19,6 +19,7 @@ export default function UserPage() {
     async function fetchUser() {
       const res = await fetch(`/api/expert/${username}`)
       const data = await res.json()
+
       if (data.message === 'no user found') {
         setError(data.message)
         return

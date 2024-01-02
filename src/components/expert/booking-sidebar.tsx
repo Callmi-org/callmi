@@ -3,7 +3,7 @@ import BookingForm from './booking-form'
 
 type Props = {
   profile: UserAPIResponse
-  selectedDate: Date | undefined
+  selectedDate?: Date
   setSelectedDate: (date: Date | undefined) => void
   availability: UserAvailability[]
 }
