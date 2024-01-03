@@ -17,10 +17,9 @@ function Calendar({
 }: CalendarProps) {
   return (
     <DayPicker
-
       today={new Date()}
       showOutsideDays={showOutsideDays}
-      className={cn('p-3', className)}
+      className={cn('mx-auto w-full max-w-md p-3', className)}
       classNames={{
         months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
         month: 'space-y-4',
@@ -38,19 +37,19 @@ function Calendar({
         head_cell:
           'text-gray-500 rounded-md w-9 font-normal text-[0.8rem] dark:text-gray-400',
         row: 'flex w-full mt-2',
-        cell: 'h-9 w-9 rounded-full text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-gray-100/50 [&:has([aria-selected])]:bg-gray-100 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20 dark:[&:has([aria-selected].day-outside)]:bg-gray-800/50 dark:[&:has([aria-selected])]:bg-gray-800',
+        cell: 'h-9 w-9 rounded-full text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-gray-100/50 [&:has([aria-selected])]:bg-gray-100  focus-within:relative focus-within:z-20 dark:[&:has([aria-selected].day-outside)]:bg-gray-800/50 dark:[&:has([aria-selected])]:bg-gray-800',
         day: cn(
           buttonVariants({ variant: 'ghost' }),
-          'h-9 w-9 p-0 font-normal aria-selected:opacity-100'
+          'h-9 w-9 p-0 font-normal '
         ),
         day_range_end: 'day-range-end',
         day_selected:
           'bg-brand text-gray-50 hover:bg-brand hover:text-gray-50 focus:bg-brand focus:text-gray-50 dark:bg-gray-50 dark:text-brand dark:hover:bg-gray-50 dark:hover:text-brand dark:focus:bg-gray-50 dark:focus:text-brand',
         day_today:
-          'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-50',
+          'bg-gray-200 border-brand border rounded-[100%] text-gray-900 dark:bg-gray-800 dark:text-gray-50', // for some reason rounded full not working here
         day_outside:
-          'day-outside text-gray-500 opacity-50 aria-selected:bg-gray-100/50 aria-selected:text-gray-500 aria-selected:opacity-30 dark:text-gray-400 dark:aria-selected:bg-gray-800/50 dark:aria-selected:text-gray-400',
-        day_disabled: 'text-gray-500 opacity-50 dark:text-gray-400',
+          'day-outside text-gray-300 aria-selected:bg-gray-100/50 aria-selected:text-gray-500 dark:text-gray-400 dark:aria-selected:bg-gray-800/50 dark:aria-selected:text-gray-400',
+        day_disabled: 'text-gray-400 bg-white dark:text-gray-400',
         day_range_middle:
           'aria-selected:bg-gray-100 aria-selected:text-gray-900 dark:aria-selected:bg-gray-800 dark:aria-selected:text-gray-50',
         day_hidden: 'invisible',
@@ -59,7 +58,6 @@ function Calendar({
       components={{
         IconLeft: ({ ...props }) => <ChevronLeft className='h-4 w-4' />,
         IconRight: ({ ...props }) => <ChevronRight className='h-4 w-4' />,
-        
       }}
       {...props}
     />

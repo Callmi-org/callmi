@@ -1,4 +1,4 @@
-export default function HowItWorks(profile: User) {
+export default function HowItWorks(profile: UserAPIResponse) {
   return (
     <div
       id='how-it-works'

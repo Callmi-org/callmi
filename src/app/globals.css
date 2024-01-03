@@ -95,8 +95,12 @@ body {
   @apply w-full justify-between;
 }
 
-.rdp-button {
-  @apply rounded-full;
+.rdp-button:enabled[role|='gridcell'] {
+  @apply rounded-full bg-brand-light;
+}
+
+.rdp-button:enabled[role|='gridcell'][aria-selected|='true'] {
+  @apply bg-brand text-white;
 }
 
 h1 {

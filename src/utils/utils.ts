@@ -1,5 +1,8 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import { convertTimeStringToObject } from './prisma'
+import dayjs from 'dayjs'
+import { UserAvailability } from '@prisma/client'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -11,4 +14,13 @@ export function formatCurrency(amount: number) {
     currency: 'USD',
     maximumFractionDigits: 0,
   }).format(amount)
+}
+
+export function normalizeUrl(url: string) {
+  try {
+    const urlObj = new URL(url)
+    return urlObj.href
+  } catch (error) {
+    return `https://${url}`
+  }
 }

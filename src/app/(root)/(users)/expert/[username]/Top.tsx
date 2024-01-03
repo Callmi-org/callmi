@@ -14,7 +14,7 @@ import {
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-export default function Top(profile: User) {
+export default function Top(profile: UserAPIResponse) {
   const shareLink = `https://callmi.co${usePathname()}`
   const { toast } = useToast()
 
@@ -82,7 +82,7 @@ export default function Top(profile: User) {
           </Button>
         </div>
       </div>
-      <p className='flex-1  whitespace-pre-wrap text-base text-gray-600'>
+      <p className='max-w-full flex-1 whitespace-pre-wrap text-base text-gray-600'>
         {profile.bio}
       </p>
       <div className='grid w-full grid-cols-1 gap-8 md:grid-cols-3 2xl:max-w-[83.33%]'>

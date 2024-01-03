@@ -1,21 +1,21 @@
 'use client'
 import { useSession } from 'next-auth/react'
-import SelectPill from '@/components/form/select-pill'
+import SelectPill from '@/components/onboarding-form/select-pill'
 import { useEffect, useState } from 'react'
 import { expertiseData, industryData } from '@/data/general'
 import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
 import { convertEnumToText } from '@/utils/prisma'
-import BackButton from '@/components/form/back-button'
+import BackButton from '@/components/onboarding-form/back-button'
 import { handleSubmit } from './handlers'
-import { ClientSubmitButton } from '@/components/form/client-submit-button'
+import { ClientSubmitButton } from '@/components/onboarding-form/client-submit-button'
 import OnboardingSkeleton from '../../onboarding-skeleton'
 import Loading from '@/components/layout/loading'
 
 export default function OnboardingStep2() {
   const { data: session, status } = useSession({ required: true })
   const { push } = useRouter()
-  if (session?.user.onboarded) push(`/expert/${session.user.username}`)
+  // if (session?.user.onboarded) push(`/expert/${session.user.username}`)
 
   const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>(
     (session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]) ||

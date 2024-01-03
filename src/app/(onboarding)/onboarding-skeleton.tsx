@@ -22,7 +22,7 @@ export default function OnboardingSkeleton({
   wide = false,
 }: Props) {
   return (
-    <main className='grid w-full flex-1 grid-cols-1 bg-white md:grid-cols-2'>
+    <main className='grid w-full flex-1 grid-cols-1 bg-white lg:grid-cols-2'>
       <div
         id='left'
         className='col-span-1 flex h-full flex-col'

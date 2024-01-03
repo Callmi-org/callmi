@@ -109,35 +109,33 @@ export const profile: User = {
   costPerHour: 100,
   // time zones ??
   // https://github.com/calcom/cal.com/blob/main/packages/types/Calendar.d.ts
-  availability: {
-    monday: {
-      available: true,
-      start: '9:00',
-      end: '17:00',
+  availability: [
+    {
+      dayOfWeek: 0,
+      enabled: true,
+      startTime: {
+        hour: 9,
+        minute: 0,
+      },
+      endTime: {
+        hour: 17,
+        minute: 0,
+      },
     },
-    tuesday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    wednesday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    thursday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    friday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    saturday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    sunday: {
-      start: '9:00',
-      end: '17:00',
-    },
-  },
+  ],
 }
+
+export const defaultAvailabilities: Availability[] = daysOfWeek.map(
+  (_, idx) => ({
+    dayOfWeek: idx,
+    enabled: false,
+    startTime: {
+      hour: 9,
+      minute: 0,
+    },
+    endTime: {
+      hour: 17,
+      minute: 0,
+    },
+  })
+)

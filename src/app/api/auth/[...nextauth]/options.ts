@@ -10,6 +10,11 @@ const prisma = new PrismaClient()
 
 const options: AuthOptions = {
   adapter: PrismaAdapter(prisma),
+  theme: {
+    brandColor: '#fe494b',
+    colorScheme: 'light',
+    logo: '/logo.png',
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -41,7 +46,13 @@ const options: AuthOptions = {
     signIn: async ({ user, isNewUser }) => {
       if (!isNewUser) return
       try {
-        await createBrevoContact({ name: user.name!, email: user.email! })
+        const { email, name } = user
+        if (!email || !name) throw new Error('Missing email or name')
+        await createBrevoContact({
+          name,
+          email,
+          contactType: 'expert',
+        })
         await sendWelcomeEmail({ name: user.name!, email: user.email! })
       } catch (error) {
         console.error(error)

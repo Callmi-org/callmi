@@ -10,19 +10,22 @@ import Loading from '@/components/layout/loading'
 
 export default function UserPage() {
   const { username } = useParams()
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>()
 
-  const [profile, setProfile] = useState<User>()
+  const [profile, setProfile] = useState<UserAPIResponse>()
   const [error, setError] = useState('')
 
   useEffect(() => {
     async function fetchUser() {
       const res = await fetch(`/api/expert/${username}`)
       const data = await res.json()
+
       if (data.message === 'no user found') {
         setError(data.message)
         return
       }
+
+      console.log({ data })
       setProfile(data)
     }
 
@@ -69,6 +72,7 @@ export default function UserPage() {
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
           profile={profile}
+          availability={profile.availability}
         />
       </div>
       <BookButton userId={username as string}>Book</BookButton>

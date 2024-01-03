@@ -1,7 +1,7 @@
 import Image from 'next/image'
 export default function ImageRight() {
   return (
-    <div className='relative col-span-1 hidden bg-brand md:block'>
+    <div className='relative col-span-1 hidden bg-brand lg:block'>
       <div className='sticky left-0 top-0 h-full max-h-screen w-full'>
         <Image
           src='/onboarding/onboarding.jpg'
@@ -15,37 +15,41 @@ export default function ImageRight() {
           <h1 className='whitespace-nowrap text-center text-3xl font-medium text-white'>
             Trusted by experts from
           </h1>
-          <div className='mt-8 flex w-full max-w-full flex-wrap justify-center gap-12 px-12'>
+          <div className='mt-8 flex w-full flex-wrap justify-center gap-12 px-12'>
             <Image
-              src='/onboarding/svg/google.svg'
+              src='/onboarding/companies/talabat.png'
               alt='google logo'
-              width='96'
-              height='96'
+              width='110'
+              height='110'
               className='object-contain'
             />
             <Image
-              src='/onboarding/svg/amazon.svg'
+              src='/onboarding/companies/eyewa.png'
               alt='amazon logo'
-              width='124'
-              height='124'
+              width='110'
+              height='110'
+              className='object-contain'
             />
             <Image
-              src='/onboarding/svg/credly.svg'
+              src='/onboarding/companies/pluto.png'
               alt='credly logo'
-              width='64'
-              height='64'
+              width='128'
+              height='128'
+              className='object-contain'
             />
             <Image
-              src='/onboarding/svg/meta.svg'
+              src='/onboarding/companies/careem.png'
               alt='meta logo'
               width='124'
               height='124'
+              className='object-contain'
             />
             <Image
-              src='/onboarding/svg/jira.svg'
+              src='/onboarding/companies/justlife.png'
               alt='Jira logo'
-              width='80'
-              height='80'
+              width='110'
+              height='110'
+              className='object-contain'
             />
           </div>
         </div>
