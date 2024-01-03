@@ -80,7 +80,7 @@ export default function BookingForm({
   function clientAction(formData: FormData) {
     try {
       if (!selectedDate) throw new Error('Please select a date')
-      const res = formAction(formData, selectedDate, profile, selectedTime)
+      const res = formAction(formData, profile, selectedTime)
       console.log({ res })
     } catch (error) {
       const { message } = error as Error

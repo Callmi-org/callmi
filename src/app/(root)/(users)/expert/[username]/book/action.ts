@@ -1,15 +1,10 @@
 'use server'
 
 import { createBrevoContact, sendEventEmails } from '@/utils/brevo'
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import timezone from 'dayjs/plugin/timezone'
-import { convertTimeStringToObject } from '@/utils/prisma'
 import { SelectedTime } from '@/components/expert/booking-form'
 
 export default async function formAction(
   formData: FormData,
-  date: Date,
   expert: UserAPIResponse,
   selectedTime: SelectedTime
 ) {
