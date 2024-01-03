@@ -6,6 +6,9 @@ import timezone from 'dayjs/plugin/timezone'
 import { SelectedTime } from '@/components/expert/booking-form'
 import { formatCurrency } from './utils'
 
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
 type SendEventEmailArgs = {
   expert: UserAPIResponse
   client: {
@@ -29,6 +32,11 @@ export async function sendEventEmails({
     brevo.TransactionalEmailsApiApiKeys.apiKey,
     process.env.BREVO_API_KEY as string
   )
+
+  /**
+   * CALLMI EMAIL
+   */
+
   const emailToCallmi = new brevo.SendSmtpEmail()
 
   emailToCallmi.templateId = 4
@@ -41,6 +49,7 @@ export async function sendEventEmails({
   emailToCallmi.params = {
     DURATION: callDuration,
     EXPERT: expert.name,
+    EXPERT_EMAIL: expert.email,
     CLIENT_EMAIL: client.email,
     EXPERT_TIMEZONE: expert.timezone,
     SCHEDULED_DATE: dayjs(selectedTime.expert).format('DD/MM/YYYY'),
@@ -62,6 +71,10 @@ export async function sendEventEmails({
     await transactionalEmailAPI.sendTransacEmail(emailToCallmi)
 
   // return callmiEmailRes.body
+
+  /**
+   * EXPERT EMAIL
+   */
 
   const emailToExpert = new brevo.SendSmtpEmail()
 
@@ -95,6 +108,10 @@ export async function sendEventEmails({
   const expertEmailRes =
     await transactionalEmailAPI.sendTransacEmail(emailToExpert)
 
+  /**
+   * CLIENT EMAIL
+   */
+
   const emailToClient = new brevo.SendSmtpEmail()
 
   emailToClient.templateId = 2
@@ -108,8 +125,12 @@ export async function sendEventEmails({
     DURATION: callDuration,
     EXPERT_NAME: expert.name,
     CLIENT_TIMEZONE: client.timezone,
-    SCHEDULED_DATE: dayjs(selectedTime.client).format('DD/MM/YYYY'),
-    SCHEDULED_TIME: dayjs(selectedTime.client).format('HH:mm'),
+    SCHEDULED_DATE: dayjs(selectedTime.client)
+      .tz(client.timezone)
+      .format('DD/MM/YYYY'),
+    SCHEDULED_TIME: dayjs(selectedTime.client)
+      .tz(client.timezone)
+      .format('HH:mm'),
     COST_TO_CLIENT: formatCurrency(costToClient),
   }
 

@@ -50,8 +50,6 @@ export default async function formAction(
       costToClient,
     })
 
-    console.log({ sendEventEmailsResponse })
-
     return { error: null, status: 200 }
   } catch (error) {
     console.error(error)
