@@ -21,7 +21,7 @@ export default async function formAction(
   const costToClient =
     expert.costPerHour * ((parseInt(callDuration) / 60) * 1.2)
 
-  const paidToExpert = expert.costPerHour * (parseInt(callDuration) / 60)
+  const payableToExpert = expert.costPerHour * (parseInt(callDuration) / 60)
 
   if (!stripe) {
     return { error: 'stripe error', status: 500 }
@@ -48,8 +48,18 @@ export default async function formAction(
       },
     ],
     customer_email: clientEmail,
+    metadata: {
+      duration: callDuration,
+      meetingDate: JSON.stringify(selectedTime),
+      clientEmail,
+      clientTimezone,
+      costToClient,
+      expertId: expert.id,
+      payableToExpert,
+    },
   })
 
+  console.log(checkoutSession)
   redirect(checkoutSession.url as string)
 
   // try {
