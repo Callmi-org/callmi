@@ -85,12 +85,14 @@ model UserAvailability {
 
 model Meeting {
   id                String   @id @default(cuid())
+  stripeSessionId   String
   durationInMinutes Int
   meetingDate       DateTime
   clientName        String
   clientEmail       String
   clientTimezone    String
   costToClient      Int
+  payableToExpert   Int
 
   expert   User   @relation(fields: [expertId], references: [id])
   expertId String
