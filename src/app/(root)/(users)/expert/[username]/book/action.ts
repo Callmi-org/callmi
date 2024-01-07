@@ -32,7 +32,8 @@ export default async function formAction(
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: 'payment',
     submit_type: 'pay',
-    success_url: `${origin}/expert/${expert.username}/book/success`,
+    // success_url: `${origin}/expert/${expert.username}/book/success`,
+    success_url: `${origin}/expert/${expert.username}`,
     cancel_url: `${origin}/expert/${expert.username}`,
     line_items: [
       {
@@ -48,18 +49,19 @@ export default async function formAction(
       },
     ],
     customer_email: clientEmail,
-    metadata: {
-      duration: callDuration,
-      meetingDate: JSON.stringify(selectedTime),
-      clientEmail,
-      clientTimezone,
-      costToClient,
-      expertId: expert.id,
-      payableToExpert,
+    payment_intent_data: {
+      metadata: {
+        duration: callDuration,
+        meetingDate: JSON.stringify(selectedTime),
+        clientEmail,
+        clientTimezone,
+        costToClient,
+        expertId: expert.id,
+        payableToExpert,
+      },
     },
   })
 
-  console.log(checkoutSession)
   redirect(checkoutSession.url as string)
 
   // try {
