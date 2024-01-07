@@ -17,6 +17,7 @@ import {
   constructUTCDateFromDateAndTime,
   getAvailableTimes,
 } from '@/utils/booking'
+import BookButton from './book-button'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -162,14 +163,10 @@ export default function BookingForm({
           }}
         />
       )}
-      <Button
-        type='submit'
-        className='relative flex w-full items-center justify-center gap-2 bg-brand'
-      >
-        Proceed to checkout (
-        {formatCurrency((clientCostPerHour * +selectedDuration[0]) / 60)})
-        <ArrowRight className='absolute right-4 hidden xl:block' />
-      </Button>
+      <BookButton
+        clientCostPerHour={clientCostPerHour}
+        selectedDuration={selectedDuration}
+      />
     </form>
   )
 }

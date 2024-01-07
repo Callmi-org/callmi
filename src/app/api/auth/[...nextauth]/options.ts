@@ -1,8 +1,8 @@
 import GoogleProvider from 'next-auth/providers/google'
+import LinkedInProvider from 'next-auth/providers/linkedin'
 import { AuthOptions } from 'next-auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { PrismaClient } from '@prisma/client'
-import brevo from '@getbrevo/brevo'
 import { createBrevoContact, sendWelcomeEmail } from '@/utils/brevo'
 // import { google } from 'googleapis'
 
@@ -27,6 +27,10 @@ const options: AuthOptions = {
       //   },
       // },
     }),
+    // LinkedInProvider({
+    //   clientId: process.env.LINKEDIN_CLIENT_ID!,
+    //   clientSecret: process.env.LINKEDIN_CLIENT_SECRET!,
+    // }),
   ],
   pages: {
     newUser: '/onboarding/1',

@@ -40,7 +40,6 @@ export async function PUT(
       ...body,
     },
   })
-  console.log({ result })
 
   if (!result) {
     return Response.json({ message: 'update failed' })
