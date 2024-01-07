@@ -21,6 +21,18 @@ export function convertUTCDateToTimezone(
   return utcDate.tz(timezone)
 }
 
+export function getLocalDateAndTimeFromUTCString(
+  utcString: string,
+  timezone: string
+) {
+  const utcDate = dayjs(utcString)
+  const date = convertUTCDateToTimezone(utcDate, timezone)
+  return {
+    date: date.format('DD/MM/YYYY'),
+    time: date.format('h:mm A'),
+  }
+}
+
 type GetAvailableTimesArgs = {
   selectedDateAvailability?: UserAvailability
   selectedTimezone: string

@@ -87,11 +87,12 @@ model Meeting {
   id                String   @id @default(cuid())
   stripeSessionId   String
   durationInMinutes Int
-  meetingDate       DateTime
+  meetingDateUTC    DateTime
   clientName        String
   clientEmail       String
-  clientTimezone    String
   costToClient      Int
+  clientTimezone    String
+  expertTimezone    String
   payableToExpert   Int
 
   expert   User   @relation(fields: [expertId], references: [id])

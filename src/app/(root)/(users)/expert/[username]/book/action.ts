@@ -53,10 +53,16 @@ export default async function formAction(
       metadata: {
         duration: callDuration,
         meetingDate: JSON.stringify(selectedTime),
+
+        clientName: 'test client name', // TODO: remove
         clientEmail,
-        clientTimezone,
         costToClient,
+        clientTimezone,
+
+        expertTimezone: expert.timezone,
         expertId: expert.id,
+        expertName: expert.name,
+        expertEmail: expert.email,
         payableToExpert,
       },
     },
