@@ -1,10 +1,11 @@
 import { AlertCircleIcon, Check } from 'lucide-react'
-import { profile } from '@/data/general'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import Image from 'next/image'
-import Email from 'next-auth/providers/email'
+import {
+  EmailButton,
+  WhatsappButton,
+} from '@/components/layout/contact-buttons'
 export default function BookingSuccess({
   searchParams,
 }: {
@@ -16,12 +17,12 @@ export default function BookingSuccess({
         <div>
           <h1 className='text-2xl font-bold'>Something went wrong</h1>
           <p>
-            We couldn't find the meeting you were looking for. It might have
-            been cancelled or rescheduled.
+            We couldn&apos;t find the meeting you were looking for. It might
+            have been cancelled or rescheduled.
           </p>
           <p>
-            If it wasn't, please get in touch with Walid via <EmailButton /> or{' '}
-            <WhatsappButton />
+            If it wasn&apos;t, please get in touch with Walid via{' '}
+            <EmailButton /> or <WhatsappButton />
           </p>
           <small>
             Include the link to this page in your message so we can help you
@@ -89,34 +90,5 @@ export default function BookingSuccess({
         </div>
       </div>
     </main>
-  )
-}
-
-export function EmailButton() {
-  return (
-    <a
-      className='font-semibold text-brand'
-      href='mailto:w@callmi.co'
-    >
-      {' '}
-      email (w@callmi.co)
-    </a>
-  )
-}
-export function WhatsappButton() {
-  return (
-    <a
-      className='inline-flex items-center gap-1 font-semibold text-green-600'
-      href='https://wa.me/971585985161'
-    >
-      {' '}
-      WhatsApp
-      <Image
-        src='/svg/whatsapp.svg'
-        width={20}
-        height={20}
-        alt='WhatsApp'
-      />
-    </a>
   )
 }
