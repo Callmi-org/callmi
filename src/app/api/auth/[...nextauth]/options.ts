@@ -27,13 +27,14 @@ const options: AuthOptions = {
       //   },
       // },
     }),
-    // LinkedInProvider({
-    //   clientId: process.env.LINKEDIN_CLIENT_ID!,
-    //   clientSecret: process.env.LINKEDIN_CLIENT_SECRET!,
-    // }),
+    LinkedInProvider({
+      clientId: process.env.LINKEDIN_CLIENT_ID!,
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET!,
+    }),
   ],
   pages: {
     newUser: '/onboarding/1',
+    signIn: '/auth/signin',
   },
   jwt: {
     maxAge: 5 * 24 * 60 * 60,

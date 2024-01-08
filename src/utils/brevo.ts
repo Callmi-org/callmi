@@ -200,6 +200,7 @@ type SendEmailArgs = {
   name: string
   email: string
 }
+
 export async function sendWelcomeEmail({ name, email }: SendEmailArgs) {
   try {
     const transactionalEmailAPI = new brevo.TransactionalEmailsApi()

@@ -29,11 +29,31 @@ export default async function formAction(
 
   const origin = headers().get('origin')
 
+  const metadata = {
+    duration: callDuration,
+    meetingDate: JSON.stringify(selectedTime),
+
+    clientName: 'test client name', // TODO: remove
+    clientEmail,
+    costToClient,
+    clientTimezone,
+
+    expertTimezone: expert.timezone,
+    expertId: expert.id,
+    expertName: expert.name,
+    expertEmail: expert.email,
+    payableToExpert,
+  }
+
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: 'payment',
     submit_type: 'pay',
     // success_url: `${origin}/expert/${expert.username}/book/success`,
-    success_url: `${origin}/expert/${expert.username}`,
+    success_url: `${origin}/expert/${
+      expert.username
+    }/book/success?expert_name=${encodeURIComponent(
+      expert.name
+    )}&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/expert/${expert.username}`,
     line_items: [
       {
@@ -50,21 +70,7 @@ export default async function formAction(
     ],
     customer_email: clientEmail,
     payment_intent_data: {
-      metadata: {
-        duration: callDuration,
-        meetingDate: JSON.stringify(selectedTime),
-
-        clientName: 'test client name', // TODO: remove
-        clientEmail,
-        costToClient,
-        clientTimezone,
-
-        expertTimezone: expert.timezone,
-        expertId: expert.id,
-        expertName: expert.name,
-        expertEmail: expert.email,
-        payableToExpert,
-      },
+      metadata,
     },
   })
 

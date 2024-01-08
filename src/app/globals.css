@@ -108,7 +108,11 @@ h1 {
 }
 
 p {
-  @apply leading-relaxed  text-gray-600 md:leading-relaxed;
+  @apply leading-relaxed  text-gray-600;
+}
+
+small {
+  @apply leading-relaxed  text-gray-600;
 }
 
 @layer components {

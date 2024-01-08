@@ -1,6 +1,4 @@
 import { formatCurrency } from '@/utils/utils'
-import { ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import InputWithLabel from '../onboarding-form/input-with-label'
 import { Calendar } from '../ui/calendar'
 import dayjs from 'dayjs'
@@ -12,7 +10,6 @@ import { useState } from 'react'
 import SelectTimeAndTimezone from './select-time-and-timezone'
 import formAction from '@/app/(root)/(users)/expert/[username]/book/action'
 import { useToast } from '../ui/use-toast'
-import { redirect } from 'next/navigation'
 import {
   constructUTCDateFromDateAndTime,
   getAvailableTimes,
@@ -56,8 +53,6 @@ export default function BookingForm({
     expert: '',
     client: '',
   })
-
-  console.log({ selectedTime })
 
   const { toast } = useToast()
 

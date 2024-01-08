@@ -9,9 +9,9 @@ import { Toaster } from '@/components/ui/toaster'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://callmi.co'),
-  title: 'Callmi - Fast online appointment scheduling',
+  title: 'Callmi',
   description:
-    'Callmi – Get Paid for Your Time, Every Time: Schedule, Charge, and Call in 30 seconds',
+    "Book MENA's most in-demand startup experts over a 1:1 video call.",
   openGraph: {
     images: 'https://callmi.vercel.app/group.png',
   },

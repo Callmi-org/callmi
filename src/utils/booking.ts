@@ -3,6 +3,7 @@ import utc from 'dayjs/plugin/utc'
 import dayjsTimezone from 'dayjs/plugin/timezone'
 import { convertTimeStringToObject } from './prisma'
 dayjs.extend(utc)
+dayjs.extend(dayjsTimezone)
 
 export function constructUTCDateFromDateAndTime(date: Date, time: string) {
   const timeObject = convertTimeStringToObject(time)
@@ -17,7 +18,6 @@ export function convertUTCDateToTimezone(
   utcDate: dayjs.Dayjs,
   timezone: string
 ) {
-  dayjs.extend(dayjsTimezone)
   return utcDate.tz(timezone)
 }
 
@@ -84,5 +84,5 @@ export function getAvailableTimes({
 
   // TODO: Remove times that are already booked, or conditionally add them to the list above
 
-  return clientAvailableTimes.length ? clientAvailableTimes : []
+  return clientAvailableTimes
 }

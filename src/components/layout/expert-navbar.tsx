@@ -1,9 +1,7 @@
 'use client'
 import NavLogo from './nav-logo'
-import Avatar from '@/components/general/avatar'
 import { useSession } from 'next-auth/react'
 import { Button } from '../ui/button'
-import { useToast } from '../ui/use-toast'
 import Link from 'next/link'
 import LandingButton from '../landing/landing-button'
 
@@ -38,7 +36,11 @@ export default function LandingNavbar() {
             </Button>
           </a> */}
           {session ? (
-            <Link href='mailto:w@callmi.co?subject=Need help.'>
+            <Link
+              href={`mailto:w@callmi.co?subject=${encodeURIComponent(
+                'Reporting a problem'
+              )}`}
+            >
               <Button variant='outline'>Contact Admin</Button>
             </Link>
           ) : (

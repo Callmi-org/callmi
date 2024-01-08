@@ -12,6 +12,7 @@ export async function GET(
     where: { username },
     include: {
       availability: true,
+      meetings: true,
     },
   })
 

@@ -1,4 +1,4 @@
-import handleSelect from '@/app/(onboarding)/onboarding/2/handlers'
+import handleSelect from '@/app/(auth)/onboarding/2/handlers'
 import { cn } from '@/utils/utils'
 
 type Props<T extends Expertise | Industry> = {

@@ -18,7 +18,7 @@ export default function NavLogo() {
           width={32}
         />
       </motion.div>
-      <h1 className='text-3xl tracking-wide'>Callmi</h1>
+      <h1 className='hidden text-2xl tracking-wide sm:block'>Callmi</h1>
     </Link>
   )
 }
