@@ -22,7 +22,7 @@ export const industryTypeData = [
   'B2B Software',
   'Consumer Hardware',
   'Consumer Software',
-  'E-commerce & CPG',
+  'Ecommerce & CPG',
   'Education',
   'Fashion & Apparel',
   'Fintech',
@@ -61,7 +61,7 @@ export const industryData: Industry[] = [
   'B2B Software',
   'Consumer Hardware',
   'Consumer Software',
-  'E-commerce & CPG',
+  'Ecommerce & CPG',
   'Education',
   'Fashion & Apparel',
   'Fintech',
@@ -84,36 +84,6 @@ export const daysOfWeek = [
   'saturday',
   'sunday',
 ] as const
-
-export const timeZones = [
-  'UTC-12:00',
-  'UTC-11:00',
-  'UTC-10:00',
-  'UTC-09:00',
-  'UTC-08:00',
-  'UTC-07:00',
-  'UTC-06:00',
-  'UTC-05:00',
-  'UTC-04:00',
-  'UTC-03:00',
-  'UTC-02:00',
-  'UTC-01:00',
-  'UTC+00:00',
-  'UTC+01:00',
-  'UTC+02:00',
-  'UTC+03:00',
-  'UTC+04:00',
-  'UTC+05:00',
-  'UTC+06:00',
-  'UTC+07:00',
-  'UTC+08:00',
-  'UTC+09:00',
-  'UTC+10:00',
-  'UTC+11:00',
-  'UTC+12:00',
-  'UTC+13:00',
-  'UTC+14:00',
-]
 
 export const profile: User = {
   name: 'Michael Candor',
@@ -139,35 +109,33 @@ export const profile: User = {
   costPerHour: 100,
   // time zones ??
   // https://github.com/calcom/cal.com/blob/main/packages/types/Calendar.d.ts
-  availability: {
-    monday: {
-      available: true,
-      start: '9:00',
-      end: '17:00',
+  availability: [
+    {
+      dayOfWeek: 0,
+      enabled: true,
+      startTime: {
+        hour: 9,
+        minute: 0,
+      },
+      endTime: {
+        hour: 17,
+        minute: 0,
+      },
     },
-    tuesday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    wednesday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    thursday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    friday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    saturday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    sunday: {
-      start: '9:00',
-      end: '17:00',
-    },
-  },
+  ],
 }
+
+export const defaultAvailabilities: Availability[] = daysOfWeek.map(
+  (_, idx) => ({
+    dayOfWeek: idx,
+    enabled: false,
+    startTime: {
+      hour: 9,
+      minute: 0,
+    },
+    endTime: {
+      hour: 17,
+      minute: 0,
+    },
+  })
+)
