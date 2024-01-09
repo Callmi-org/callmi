@@ -35,7 +35,7 @@ export default function MainFeatures() {
           people
         </FeatureTitle>
         <FeatureDescription>
-          Callmi&apos;s expert booking tool syncs with your Google Calendar for
+          Callmi&apos;s expert booking tool syncs with your calendar for
           hassle-free scheduling. If you&apos;re feeling charitable, you can
           inform your clients that you&apos;re supporting a cause with each
           session.
