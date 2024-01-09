@@ -19,7 +19,7 @@ export default function OnboardingStep5() {
 
   useEffect(() => {
     update() // I think redirecting to expert page was broken by stale username
-  }, [update])
+  }, [])
 
   const children =
     status === 'loading' ? <Loading /> : <Form user={session?.user} />
