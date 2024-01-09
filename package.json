@@ -14,6 +14,7 @@
     "db:seed": "npx dotenv -e .env.local -- prisma db seed",
     "prisma:generate": "npx dotenv -e .env.local -- prisma generate",
     "prisma:studio": "npx dotenv -e .env.local -- prisma studio",
+    "prisma:studio:prod": "npx dotenv -e .env.production -- prisma studio",
     "production:build": "npx prisma generate && npx prisma migrate deploy && next build",
     "dev:build": "npx dotenv -e .env.local -- npm run production:build",
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/webhooks/stripe"
