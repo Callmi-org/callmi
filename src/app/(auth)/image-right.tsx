@@ -16,7 +16,7 @@ export default function ImageRight() {
           <h1 className='whitespace-nowrap text-center text-3xl font-medium text-white'>
             Trusted by experts from
           </h1>
-          <div className='mt-8 grid w-full max-w-3xl grid-cols-5 items-center justify-center gap-4 px-4'>
+          <div className='mx-auto mt-8 grid w-full max-w-3xl grid-cols-5 items-center justify-center gap-4 px-4'>
             {onboardingCompanyIconsData.map(({ src, alt }, idx) => (
               <Image
                 key={idx}
