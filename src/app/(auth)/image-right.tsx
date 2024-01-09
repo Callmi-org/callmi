@@ -1,3 +1,4 @@
+import { onboardingCompanyIconsData } from '@/data/onboarding'
 import Image from 'next/image'
 export default function ImageRight() {
   return (
@@ -15,42 +16,18 @@ export default function ImageRight() {
           <h1 className='whitespace-nowrap text-center text-3xl font-medium text-white'>
             Trusted by experts from
           </h1>
-          <div className='mt-8 flex w-full flex-wrap justify-center gap-12 px-12'>
-            <Image
-              src='/onboarding/companies/talabat.png'
-              alt='google logo'
-              width='110'
-              height='110'
-              className='object-contain'
-            />
-            <Image
-              src='/onboarding/companies/eyewa.png'
-              alt='amazon logo'
-              width='110'
-              height='110'
-              className='object-contain'
-            />
-            <Image
-              src='/onboarding/companies/pluto.png'
-              alt='credly logo'
-              width='128'
-              height='128'
-              className='object-contain'
-            />
-            <Image
-              src='/onboarding/companies/careem.png'
-              alt='meta logo'
-              width='124'
-              height='124'
-              className='object-contain'
-            />
-            <Image
-              src='/onboarding/companies/justlife.png'
-              alt='Jira logo'
-              width='110'
-              height='110'
-              className='object-contain'
-            />
+          <div className='mt-8 grid w-full max-w-3xl grid-cols-5 items-center justify-center gap-4 px-4'>
+            {onboardingCompanyIconsData.map(({ src, alt }, idx) => (
+              <Image
+                key={idx}
+                src={src}
+                alt={alt}
+                width='96'
+                height='96'
+                className='mx-auto object-contain'
+                priority
+              />
+            ))}
           </div>
         </div>
       </div>

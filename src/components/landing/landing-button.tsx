@@ -16,7 +16,7 @@ export default function LandingButton({
   ...props
 }: Props) {
   return (
-    <Link href='/onboarding/1'>
+    <Link href='/auth/signin'>
       <Button className={cn(buttonVariants({ variant, size, className }))}>
         {children}
       </Button>

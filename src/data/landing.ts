@@ -1,23 +1,23 @@
-export const companyIconsData = [
+export const heroCompanyIconsData = [
   {
-    src: '/landing/companies/pluto.png',
-    alt: 'pluto',
+    src: '/companies/colored/anghami.png',
+    alt: 'anghami',
   },
   {
-    src: '/landing/companies/talabat.png',
-    alt: 'talabat',
-  },
-  {
-    src: '/landing/companies/careem.png',
+    src: '/companies/colored/careem.png',
     alt: 'careem',
   },
   {
-    src: '/landing/companies/eyewa.png',
+    src: '/companies/colored/google.png',
+    alt: 'google',
+  },
+  {
+    src: '/companies/colored/eyewa.png',
     alt: 'eyewa',
   },
   {
-    src: '/landing/companies/justlife.png',
-    alt: 'justlife',
+    src: '/companies/colored/talabat.png',
+    alt: 'talabat',
   },
 ]
 

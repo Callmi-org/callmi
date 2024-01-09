@@ -1,7 +1,7 @@
 import LandingNavbar from '@/components/layout/landing-navbar'
 import Image from 'next/image'
 import LandingButton from '@/components/landing/landing-button'
-import { companyIconsData } from '@/data/landing'
+import { heroCompanyIconsData } from '@/data/landing'
 import HighlightSpan from '@/components/landing/highlight-span'
 
 export default function Hero() {
@@ -34,7 +34,7 @@ export default function Hero() {
             Join other experts and leaders from
           </p>
           <div className='grid w-full max-w-3xl grid-cols-5 items-center justify-center gap-4 px-4 '>
-            {companyIconsData.map(({ src, alt }) => (
+            {heroCompanyIconsData.map(({ src, alt }) => (
               <Image
                 key={alt}
                 src={src}
