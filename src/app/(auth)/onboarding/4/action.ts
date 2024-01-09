@@ -16,6 +16,9 @@ export const formAction = async (data: Availability[], id: string) => {
 
   if (session?.user.id !== id) return { error: 'Unauthorized', status: 403 }
 
+  if (!data.length)
+    return { error: 'Please pick at least one availability slot', status: 400 }
+
   let allValid = true
 
   if (data.length) {
